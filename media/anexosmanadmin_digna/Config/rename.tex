@@ -1,0 +1,29 @@
+%
+% Este fichero contiene una lista de nombres (variables) internos
+% de LaTeX, a los que puedes cambiar el nombre. Por ejemplo, puedes
+% hacer que los cap�tulos se llamen "Secci�n" en vez de "Cap�tulo"
+%
+\renewcommand\bibname{Bibliograf\'{\i}a}        % as� el nombre de la secci�n Bibliograf�a ser� "Bibliograf�a".
+\newcommand{\myname}{Digna González Otero}                 % nombre del autor.
+\newcommand{\myboss}{José Daniel Gutiérrez Porset}                 % nombre del supervisor.
+\newcommand{\thesistitle}{\uppercase{Construcción e implantación de herramientas para la gestión colaborativa del conocimiento en el GSC}}        % t�tulo del trabajo.
+\newcommand{\worktype}{Proyecto Fin de Carrera} % tipo de trabajo.
+\newcommand{\upv}{Utils/ehu_logo.eps}          % fichero con el logo (p.e. para la portada).
+\newcommand{\ibi}{Utils/logo_ingenieria.eps}          % fichero con el logo (p.e. para la portada).
+\newcommand{\logoupv}{Utils/ehu_logo.png}          % fichero con el logo (p.e. para la portada).
+\newcommand{\logoibi}{Utils/logo_ingenieria.png}          % fichero con el logo (p.e. para la portada).
+%\renewcommand{\figurename}{xxx}                % nombre a pie de figura (xxx 1: bla-bla-bla).
+%\renewcommand{\listfigurename}{yyy}            % nombre del �ndice de figuras.
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listtablename}{Índice de tablas}
+
+    \makeatletter
+    \def\thebibliography#1{\section*{REFERENCIAS\@mkboth
+      {REFERENCIAS}{REFERENCIAS}}\list
+      {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+	\advance\leftmargin\labelsep
+	\usecounter{enumi}}
+	\def\newblock{\hskip .11em plus .33em minus .07em}
+	\sloppy\clubpenalty4000\widowpenalty4000
+	\sfcode`\.=1000\relax}
+    \makeatother

@@ -1,0 +1,19 @@
+
+  * [[http://www.slideshare.net/digna/presentations|Digna González en slideshare]]
+    * [[http://www.slideshare.net/digna/1-introduccion-a-latex|1- Introducción a LaTeX]]
+    * [[http://www.slideshare.net/digna/2-primer-documento-en-latex|2- Primer documento en LaTeX]]
+    * [[http://www.slideshare.net/digna/3-bibliografia|3- BibTeX: Gestión de bibliografía en LaTeX]]
+    * [[http://www.slideshare.net/digna/4zotero|4- Zotero]]
+    * [[http://www.slideshare.net/digna/5beamer|5- Beamer: Creación de presentaciones con LaTeX]]
+
+\\ 
+
+{{ slideshare>1introduccion-100606181055-phpapp02 }} \\
+
+{{ slideshare>2primerdocumento-100606181234-phpapp01 }} \\
+
+{{ slideshare>3bibliografia-100606181358-phpapp02 }} \\
+
+{{ slideshare>4zotero-100610175643-phpapp02 }} \\
+
+{{ slideshare>5beamer-100619152342-phpapp02 }}

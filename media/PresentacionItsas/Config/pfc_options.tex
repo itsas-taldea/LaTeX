@@ -1,0 +1,102 @@
+%\mode<presentation>
+
+\usetheme{Warsaw}
+%\usetheme[titlepagelogo=ehu_logo,]{Digna}     
+\usecolortheme[named=PineGreen]{structure}                       % Beamer Theme, Berlin, Warsaw, Ilmenau, Dresden
+%\usecolortheme[RGB={109, 15, 36}]{structure} %Tirando a granate
+%\usecolortheme[RGB={203, 76, 109}]{structure} %Rosa
+
+\usecolortheme{freewilly}
+
+% Establecemos una imagen como fondo de pantalla.
+	\usebackgroundtemplate{
+		% el \paperwidth y el \paperheigh son variables que devuelven el tamaño de cada diapositiva, así ajustamos la imagen a la diapositiva
+		\includegraphics[width=\paperwidth,height=\paperheight]{Utils/fondo01.jpg}
+	}
+%\usecolortheme{seahorse}
+%\usecolortheme{rose}                         % Beamer Color Theme
+
+%Sin freewilly: Naranjas: Dandelion, Peach, Orange, Rojos: BitterSweet, **Mahogany, Maroon, Rosa: OrangeRed, Azul: Periwinkle
+
+%Con freewilly: Naranjas: Peach, Rojos: BitterSweet, **Mahogany, ***Maroon, Rosa: OrangeRed, Azul: Periwinkle, CadetBlue, **MidnightBlue, NavyBlue, RoyalBlue, Blue, Verdes: **Green, ***ForestGreen, ****PineGreen, LimeGreen, ***OliveGreen, Marron: ****RawSienna, Sepia, **Brown, 
+\usepackage{colortbl}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% Paquete que nos da el coloreado de sintaxis
+\usepackage{listings}
+% Indicamos a listing que debe cargar el dialecto LaTeX de TeX.
+\lstloadlanguages{[LaTeX]TeX}
+\usepackage{color}
+\usepackage{xcolor}
+% Paquete para poder incluir gráficos
+\usepackage{graphicx}
+	% Paquete para poder hacer dibujos (y también circuitos)
+	%\usepackage[symbols]{circuitikz}
+	\usepackage{tikz}
+
+% Para poder usar \boldsymbol que nos permite poner negrita a expresiones ``matemáticas'' en modo matemático.
+\usepackage{amsmath}
+
+
+% Establecemos los valores por defecto de Listings
+\lstset{
+	language={[LaTeX]TeX},						% Lenguaje por defecto
+	%
+	% estilos
+	keywordstyle=\bfseries\ttfamily\color[rgb]{.8,.1,.2},	% estilos de palabras clave, identificadores, etc...
+	identifierstyle=\ttfamily,
+	commentstyle=\color[rgb]{0.1,0.5,0.1},			 
+	stringstyle=\ttfamily\color[rgb]{0.2,0.2,.7},			
+	basicstyle=\footnotesize, 						% the size of the fonts used for the code 
+	%
+	% numeración (desabilitadas en este momento :-)
+	%numbers=left, 								% where to put the line-numbers 
+	numberstyle=\footnotesize, 					% size of the fonts used for the line-numbers 
+	stepnumber=1, 							% the step between two line-numbers. 
+	numbersep=5pt, 							% how far the line-numbers are from the code 
+	%
+	% espacios
+	showspaces=false, 							% show spaces adding particular underscores 
+	showstringspaces=false,	 					% underline spaces within strings 
+	showtabs=false, 							% show tabs within strings through particular underscores 
+	tabsize=6,									% sets default tab-size to 2 spaces
+	%
+	% cuadro
+	backgroundcolor=\color{white}, 				% sets background color (needs package) 
+	frame=single, 								% adds a frame around the code
+	rulecolor=\color[rgb]{.3,.3,.3},					% set the frame's color. 
+	captionpos=b, 								% sets the caption-position to bottom 
+	%
+	% line breaking
+	breaklines=true, 							% sets automatic line breaking 
+	breakatwhitespace=false, 					% automatic breaks happen at whitespace 
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}} % Nos dibuja una flecha ``guay'' cuando el código no entra en una linea
+}
+
+
+% Nos definimos unas funciones para definir los colores
+
+% Nos define una función \red con un parámetro que será sustituido en #1
+\newcommand{\red}[1]{\color[rgb]{1,0,0} #1}
+
+\newcommand{\black}[1]{\color[rgb]{0,0,0} #1}
+\newcommand{\gray}[1]{\color[rgb]{.7,.7,.7} #1}
+\newcommand{\lightblue}[1]{\color[rgb]{.2,.5,1} #1}
+\newcommand{\mygreen}[1]{\color[rgb]{.2,.7,.2} #1}
+
+% Nota, \color es una función del paquete xcolor, que beamer carga por defecto.
+
+\title{Presentación del grupo Itsas}
+%\subtitle{Grupo de Software Libre de la UPV/EHU}
+\author[Digna Gonz\'alez Otero]{Digna Mar\'ia González Otero}
+%\institute{Itsas \\[0.5cm] digna.gonzalez@gmail.com}
+\date{}
+
+
+\newenvironment{specialframe}{\begin{frame}[fragile,environment=specialframe]}{\end{frame}}
+
+\newenvironment{myplainframe}{\begin{frame}[fragile,plain,environment=specialframe]}{\end{myplainframe}}
+      
+

@@ -1,0 +1,49 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                       %
+%  			 MASER				%
+%                                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[a4paper,12pt]{article}
+%Fichero con configuración opcional:
+\input{Config/pfc_options.tex}
+
+\begin{document}
+%Da valores a ciertas variables:
+\input{Config/rename.tex}
+%Página de portada:
+\input{Config/cover.tex}
+% CONFIG: Inicializar en 1 el n�mero de p�gina
+%\input{Config/begin.tex}
+% CONFIG: �ndice de materias (ToC)
+\input{Config/toc.tex}
+% CONFIG: Definir el estilo de las cabeceras/pi�s de p�gina.
+\input{Config/headers.tex}
+% CONFIG: Estilo de los cap�tulos
+\input{Config/chapters.tex}
+% CONTENIDO: Tras esto puedes incluir todos los cap�tulos/secciones que desees.
+\input{Introduccion.tex}
+\newpage
+\input{PrincipioFuncionamiento.tex}
+%\newpage
+%\input{OtrasTecno.tex}
+\newpage
+\input{Tipos.tex}
+\newpage
+\input{Aplicaciones.tex}
+\newpage
+%\input{Curiosidades.tex}
+%\newpage
+\input{Conclusiones.tex}
+ 
+% CONFIG: Estilo de la bibliograf�a
+\input{Config/bibliography.tex}
+% CONTENIDO: Bibliografia. Introduce una lista de ficheros .bib que quieras usar, como se expone.
+\newpage
+\bibliography{file-bibliography}
+
+\newpage
+\thispagestyle{empty}
+\input{Utils/licencia.tex}
+\end{document}

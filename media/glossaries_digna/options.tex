@@ -1,0 +1,87 @@
+\usepackage[spanish]{babel}   % (rec)  da soporte para castellano a LaTeX
+\usepackage[utf8]{inputenc}    % (rec) soporte para tildes
+\usepackage{url} %Para poder poner enlaces web
+\RequirePackage{ifpdf}%para poder usar if pdf
+
+%Para que haya enlaces internos en el documento
+\ifpdf
+    \usepackage[%
+        pdftex,%
+        colorlinks=true,% If false no colorlinks
+        pdfborder={0 0 0},% No border around Links
+        hyperindex,%
+        plainpages=false,%
+        bookmarksopen,%
+        bookmarksnumbered,%
+	breaklinks=true%
+        ]{hyperref}
+\else
+    \usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}
+\fi
+
+\usepackage{xcolor} %Para poder usar colores
+
+%Cargo el paquete glossaries con diferentes opciones: 
+% * acronym para crear listas de acr\'onimos
+% * nonumberlist para que en la lista de acr\'onimos no ponga en qu\'e p\'aginas
+% aparece  cada t\'ermino
+% * shortcuts para poder utilizar los nombres cortos para acr\'onimos: \ac, etc
+% * xindy para que utilice xindy como motor de indexado. 
+% * sanitize=none para no tener problemas con los acentos
+
+\usepackage[acronym,nonumberlist, shortcuts,
+xindy={language=spanish-traditional}, sanitize=none]{glossaries}
+\makeglossaries
+
+\usepackage{listings}
+\lstloadlanguages{[LaTeX]TeX}
+\lstset{
+	language={[LaTeX]TeX},	%Lenguaje por defecto
+	%
+	% estilos
+	keywordstyle=\bfseries\ttfamily\color[rgb]{.8,.1,.2},	% estilos de
+% palabras clave, identificadores, etc...
+	identifierstyle=\ttfamily,
+	commentstyle=\color[rgb]{0.1,0.5,0.1},			 
+	stringstyle=\ttfamily\color[rgb]{0.2,0.2,.7},			
+	basicstyle=\footnotesize, 					
+% the size of the fonts used for the code 
+	%
+	% numeraci\'on (desabilitadas en este momento :-)
+	%numbers=left, 							
+% where to put the line-numbers 
+	numberstyle=\footnotesize, % size  of the fonts used for the
+% line-numbers 
+	stepnumber=1, 	% the step between two line-numbers. 
+	numbersep=5pt, % how far the line-numbers are from the code 
+	%
+	% espacios
+	showspaces=false, 						
+% show spaces adding particular underscores 
+	showstringspaces=false,	 	%underline spaces within strings 
+	showtabs=false, 						
+% show tabs within strings through particular underscores 
+	tabsize=6,								
+% sets default tab-size to 2 spaces
+	%
+	% cuadro
+	backgroundcolor=\color{white}, 	% sets background color (needs package) 
+	frame=single, 							
+% adds a frame around the code
+	rulecolor=\color[rgb]{.3,.3,.3},				
+% set the frame's color. 
+	captionpos=b, 							
+% sets the caption-position to bottom 
+	%
+	% line breaking
+	breaklines=true, % sets automatic line breaking 
+	breakatwhitespace=false, % automatic breaks happen at whitespace 
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, % Nos
+% dibuja una flecha ``guay'' cuando el c\'odigo no entra en una linea
+	escapeinside=++,		% Para escapar a LaTeX. los acentos
+}
+
+\renewcommand{\acronymname}{Lista de Acr\'onimos}%
+\addto\captionsspanish{%
+\renewcommand*{\acronymname}{Lista de Acr\'onimos}%
+}

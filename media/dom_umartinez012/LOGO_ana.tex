@@ -1,0 +1,69 @@
+\section{An\'alisis l\'ogico y funcionamiento del sistema}
+
+A la hora de realizar el an\'alisis l\'ogico de la programaci\'on desarrollada para el LOGO!, tomaremos como base el diagrama y la documentaci\'on generados por el software utilizado. Estos documentos se encuentran anexos bajo el nombre '\hyperref[CircuitDiagram]{Circuit Diagram}'. Asimismo, describiremos por separado el funcionamiento autom\'atico, la inicializaci\'on manual del sistema de riego y el accionamiento manual de la iluminaci\'on.
+
+\subsection{Funcionamiento autom\'atico}
+
+En condiciones normales, cuando el usuario no interaccione con el sistema, los bloques que afectan al funcionamiento de \'este son:
+
+\begin{itemize}
+ \item Salidas (Output): Q1, Q2, Q3, Q4 y Q5.
+ \item Retardo a la desconexi\'on (Off-delay): B006, B007, B008, B012 y B015.
+ \item Temporizador semanal (Weekly timer): B005.
+ \item Puerta l\'ogica AND: B010.
+ \item Puerta l\'ogica NOT: B017.
+\end{itemize}
+
+El temporizador semanal se encuentra programado para que genere un pulso \footnote{\tiny{La opci\'on que permite al temporizador semanal generar un pulso como salida s\'olo est\'a disponible en el modelo 0BA6. Se ha optado por activar la salida del temporizador a las 23:30 y desactivarla a las 23:31 para poder utilizar modelos inferiores. Pese a ello, el circuito formado por la puerta AND y la NOT provoca que s\'olo se genere un pulso.}} todos los d\'ias a las 23:30. Este pulso, conectado a la entrada 'Trigger' de todos los bloques de retardo a la desconexi\'on, activa directamente las salidas, dado que cada uno de los bloques de retardo tiene una asociada. El tiempo que pemancer\'an activas las señales tras haber recibido el pulso generado por el temporizador depender\'a de los par\'ametros dados en el pliego de condiciones. La siguiente tabla muestra la salida asociada a cada bloque de retardo, la duraci\'on programada y el sector de riego al que afecta o si controla la iluminaci\'on:
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+ Bloque de retardo&Salida&Tiempo&Sector\\
+ \hline
+ B015&Q1&5min&Flores 1 \\
+ B006&Q2&7min&Césped 1 \\
+ B007&Q3&9min&Césped 2 \\
+ B008&Q4&11min&Césped 3 \\
+ B012&Q5&8h&Iluminaci\'on \\
+\end{tabular}
+\end{center}
+
+La puerta NOT invierte la señal de la salida Q4, el riego de mayor duraci\'on, y se encuentra conectada a una de las entradas de la puerta AND. La salida del temporizador semanal ocupa otra de las entradas y es la salida de la puerta la que se conecta a los bloques de retardo de la desconexi\'on. Este pequeño circuito auxiliar bloquea el pulso generado por el temporizador en caso de que se haya inicializado el sistema de riego manualmente y \'este se encuentre en funcionamiento.
+
+\subsection{Accionamiento manual de la iluminaci\'on}
+
+Uno de los pulsadores se encuenta cableado directamente al bloque de entrada (Input) identificado como I2. Para poder simular correctamente el funcionamiento del sistema, se ha parametrizado este elemento, activando la opci\'on 'Momentary pushbutton (make)' en la pestaña 'Simulation'. La entrada se encuentra conectada al conector 'Trigger' de un relay de pulsos (Pulse Relay) cuyo identificador es B020. La salida de este bloque afecta directamente al bloque de salida Q5, que controla la iluminaci\'on.
+
+Para hacer compatibles el accionamiento manual y el funcionamiento autom\'atico, las salidas de los bloques B012 (Off-delay) y B020 (Pulse Relay) se han conectado a la entrada de una puerta OR identificada como B011, es la salida de \'esta la que se encuentra realmente conectada a Q5. Adem\'as, la señal del pulsador est\'a conectada al bloque de retardo de la desconexi\'on de la iluminaci\'on, lo cual provoca que, ante la intervenci\'on del usuario de 23:30 a 7:30, se anule el retardo y la iluminaci\'on s\'olo sea gestionada por el pulsador.
+
+El montaje descrito impide que el usuario pueda inicializar la activaci\'on autom\'atica de la iluminaci\'on una vez ha interactuado con el sistema a partir de las 23:30. El autor considera que, en principio, la iluminaci\'on no interfiere en el uso del terreno ajardinado y el usuario no deber\'ia tener inter\'es en desconectarla en un momento dado para despu\'es continuar con la programaci\'on. En caso de querer hacerlo, tiene la posibilidad de cortar la alimentaci\'on mediante los componentes el\'ectricos incluidos e independientes del sistema programable. Como se expondr\'a en el siguiente apartado, en el caso del control de riego se ha implementado la posibilidad de interrumpir la señal del bloque que retarda la desconexi\'on, e incluso de iniciarla en otro momento. Considera tambi\'en que resulta redundante la implementaci\'on de una soluci\'on id\'entica. La adici\'on de otras soluciones, como puede ser añadir un segundo temporizador semanal que mantenga su señal activa de 23:30 a 7:30 y que \'esta pueda ser habilitada o deshabilitada mediante pulsaciones largas del usuario, no constituyen un reto en el aprendizaje del uso de las herramientas, pues los recursos a utilizar ya est\'an incluidos en el proyecto. Valora que hacerlo complicar\'ia innecesariamente el an\'alisis y comprensi\'on del sistema, por lo que ha optado por no hacerlo.
+
+\subsection{Accionamiento manual del sistema de riego}
+
+En el caso del accionamiento manual del sistema de riego, la programaci\'on contempla la posibilidad de que el usuario efect\'ue una pulsaci\'on corta o una prolongada. La distinci\'on entre ambas se lleva a cabo mediante los siguientes bloques:
+
+\begin{itemize}
+ \item Entrada (Input): I1.
+ \item Relay de pulsos (Pulse Relay): B016.
+ \item Retardo a la conexi\'on memorizado (Retentive On-Delay): B014.
+ \item Flag: M1.
+ \item Retardo a la conexi\'on (On-Delay): B013 y B018.
+ \item Retardo a la desconexi\'on (Off-delay): B009.
+ \item Puerta l\'ogica OR: B021.
+\end{itemize}
+
+Si la duraci\'on de la pulsaci\'on es menor que 0:30 segundos, el bloque B018 impide que la señal llegue a los bloques de retardo B009 y B013. En estas condiciones, pasados 0:30 segundos, se activa la salida del bloque de retardo a la conexi\'on memorizado B014. La activaci\'on de \'esta provoca un cambio en el estado de la salida del relay de pulsos B016. Al mismo tiempo, el flag M1 provoca que se desactive la salida del bloque B014.
+
+La salida del relay de pulsos afecta directamente a las salidas Q1, Q2, Q3 y Q4, adem\'as de a las señales de reset de los bloques de retardo a la desconexi\'on analizados en el apartado 'Funcionamiento autom\'atico' de esta misma secci\'on. Si nos encontramos entre las 23:41 y las 23:30 del d\'ia siguiente, el sistema de riego se pondr\'a en marcha. Si estuvi\'eramos entre las 23:30 y las 23:41, adem\'as de continuar en funcionamiento, se desactivar\'a la temporizaci\'on autom\'atica. En cualquier caso, ser\'a necesario repetir la operaci\'on para desactivarlo, es decir, volver a realizar una pulsaci\'on corta en la entrada I1.
+
+Si la duraci\'on de la pulsaci\'on es mayor que 0:30 segundos, se activa la salida del bloque de retardo a la conexi\'on B018. \'Esta activa el bloque de retardo a la desconexi\'on B009, reseteando la salida del relay de pulsos B016, con la consiguiente desconexi\'on del sistema de riego, en caso de que estuviera activado. La señal que resetea el relay permanecer\'a activa durante 0:35 segundos \footnote{\tiny{La resoluci\'on permitida en modelos inferiores al 0BA4 es de 0:05 segundos.}} despu\'es de soltar el pulsador, por lo que, independientemente de la duraci\'on del pulso a partir de 0:30 segundos, el circuito compuesto por los bloques B014 y M1 no afecta al sistema.
+
+En caso de que la pulsaci\'on se prolongue hasta alcanzar los 3:00 segundos, se activa la salida del bloque de retardo a la conexi\'on B013. \'Esta afecta directamente a los bloques de retardo a la desconexi\'on de las salidas de riego, activando su temporizaci\'on.
+
+\subsection{Manual de usuario}
+
+Autom\'aticamente se activar\'an el sistema de riego y la iluminaci\'in del h\'orreo todos los d\'ias a las 23:30. Cada uno de los elementos permanecer\'a encendido durante el tiempo programado. Si quiere interrumpir el ciclo de riego o desconectar la iluminaci\'on, efect\'ue dos pulsaciones cortas en el pulsador correspondiente (recuerde que dispone de dos, uno de ellos para la iluminaci\'on y otro para el riego).
+
+Si quiere encender el sistema de riego o la iluminaci\'on indefinidamente, efect\'ue una pulsaci\'on corta en el pulsador. Una nueva pulsaci\'on los desactivar\'a. Tenga en cuenta que, si el sistema de riego est\'a activado a las 23:30, la temporizaci\'on diaria no se activar\'a.
+
+Si quiere iniciar un ciclo de riego en cualquier otro momento del d\'ia, mantenga el pulsador de riego accionado durante, al menos, 3 segundos. Para detenerlo, al igual que cuando se ha iniciado autom\'aticamente, realice dos pulsaciones cortas.

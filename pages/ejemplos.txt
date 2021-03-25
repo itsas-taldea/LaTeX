@@ -1,0 +1,120 @@
+===== LaTeX / Ejemplos ======
+==== Documentos ====
+
+  * **Amplificador de instrumentación**
+    * {{:contribs:latex:ampinst_umartinez012.7z|}}
+    * Autor: Unai Martínez
+    * Licencia: CC-by-sa 3.0
+    * Usos:
+
+^ Paquetes ^ Entornos  ^ Otros ^
+| [[http://en.wikibooks.org/wiki/LaTeX/Internationalization|inputenc y babel]] | [[http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures|figure]]  | [[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics#Including_graphics|includegraphics]] |
+| [[http://en.wikibooks.org/wiki/LaTeX/Page_Layout|fancyhdr]] | [[http://en.wikibooks.org/wiki/LaTeX/Mathematics|equation]] | [[http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing|label y ref]] |
+| | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Itemize|itemize]] | |
+
+\\
+
+  * **Proyecto de Domótica**
+    * {{:contribs:latex:dom_umartinez012.7z|}}
+    * Autor: Unai Martínez
+    * Licencia: CC-by-sa 3.0
+    * Usos:
+
+^ Paquetes ^ Entornos ^ Otros ^
+| [[http://en.wikibooks.org/wiki/LaTeX/Internationalization|inputenc y babel]] | [[http://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment|tabular]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Footnotes|footnotes]] |
+| [[http://en.wikibooks.org/wiki/LaTeX/Page_Layout|geometry y fancyhdr]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Itemize|itemize]] | [[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics#Including_graphics|includegraphics]] |
+| [[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics|graphicx]] | | |
+| [[http://en.wikibooks.org/wiki/LaTeX/Colors|color]] | | |
+| [[http://en.wikibooks.org/wiki/LaTeX/Hyperlinks|hyperref]] | | |
+
+
+\\
+
+  * **Creación listas de acrónimos con glossaries**
+    * {{:contribs:latex:glossaries_digna.zip|}}
+    * Autor: Digna González
+    * Licencia: CC-by-sa 3.0
+    * **Descripción:** Documento para demostrar cómo se puede usar el paquete glossaries para crear listas de acrónimos. Es autoexplicativo.
+    * Usos:
+
+^ Paquetes ^ Entornos ^ Otros ^
+| [[http://en.wikibooks.org/wiki/LaTeX/Internationalization|inputenc y babel]] | [[http://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment|tabular]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Typesetting_URLs|url]]| 
+| [[http://en.wikibooks.org/wiki/LaTeX/Hyperlinks|hyperref]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Enumerate|enumerate  ]]|[[http://en.wikibooks.org/wiki/LaTeX/Tips_and_Tricks#Generic_header|ifpdf]]   |
+| [[http://en.wikibooks.org/wiki/LaTeX/Colors|xcolor]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Description|description]]| [[http://www.ctan.org/pkg/glossaries|glossaries]] |
+| [[http://en.wikibooks.org/wiki/LaTeX/Packages/Listings|listings]] | |  |
+
+
+\\
+
+  * **Trabajo MASER**
+    * {{:contribs:latex:maser_digna.zip|}}
+    * Autor: Ivan Iglesias, Digna González
+    * Licencia: CC-by-sa 3.0
+    * **Descripción:** Trabajo de clase. Basado en la [[http://itsas.ehu.es/workgroups/plantillas_proyecto_fin_de_carrera|plantilla para PFC]] de Iñaki Silanes. [[http://itsas.ehu.es/workgroups/plantillas_proyecto_fin_de_carrera/leeme#contenidos_de_la_plantilla | Ver estructura de ficheros aproximada]]
+    * Usos:
+
+^ Paquetes ^ Entornos ^ Otros ^
+| [[http://en.wikibooks.org/wiki/LaTeX/Internationalization|inputenc y babel]] | [[http://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment|tabular]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Footnotes|footnotes]] |
+| [[http://en.wikibooks.org/wiki/LaTeX/Page_Layout|fancyhdr]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Enumerate|enumerate]] | [[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics#Including_graphics|includegraphics]] |
+| [[http://tug.ctan.org/tex-archive/macros/latex/contrib/titleref/| titleref]] | [[http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions|figure]] | [[http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing|label y ref]] |
+|[[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics | graphicx]] | | |
+|[[http://en.wikibooks.org/wiki/LaTeX/Tables | colortbl]] | | |
+|[[http://www.ctan.org/tex-archive/macros/latex/contrib/textpos/|textpos]] | | |
+
+
+  * **Truquillos LaTeX**
+    * {{:contribs:latex:truquillos_digna.zip|}}
+    * Autor: Digna González
+    * Licencia: CC-by-sa 3.0
+    * **Descripción:** Documento que explica cómo utilizar varios paquetes (para tablas avanzadas, fórmulas químicas, etc.). Es autoexplicativo.
+    * Usos:
+
+^ Paquetes ^ Entornos ^ Otros ^
+| [[http://en.wikibooks.org/wiki/LaTeX/Internationalization|inputenc y babel]] | [[http://en.wikibooks.org/wiki/LaTeX/Tables#The_tabular_environment|tabular]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Footnotes|footnotes]] |
+| [[http://en.wikibooks.org/wiki/LaTeX/Hyperlinks|hyperref, href y url]] | [[http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions| table y figure]] | [[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics#Including_graphics|includegraphics]] |
+|[[http://en.wikibooks.org/wiki/LaTeX/Colors|xcolor]] |[[http://en.wikibooks.org/wiki/LaTeX/Formatting#Verbatim_Text| verbatim]]  | [[http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing|label y ref]] |
+|[[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics | graphicx]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Enumerate|enumerate]] | [[http://math.nju.edu.cn/~meijq/tex/tex-faq/texfaq_15.html| protect]] |
+|[[http://en.wikibooks.org/wiki/LaTeX/Tables | colortbl]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Description|description]]  | |
+|[[http://en.wikibooks.org/wiki/LaTeX/Tables#Professional_tables| booktabs]] |  | |
+|[[http://mirror.ctan.org/macros/latex/contrib/threeparttable/threeparttable.pdf| threeparttable]] |  | |
+|[[http://en.wikibooks.org/wiki/LaTeX/Tables#Spanning|multirow]]| | |
+|[[http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Subfloats|subfig]]| | |
+|[[http://en.wikibooks.org/wiki/LaTeX/Packages/Listings|listings]]  | | |
+|[[http://en.wikibooks.org/wiki/LaTeX/Formatting#Compacted_lists | mdwlist]] | | |
+|[[http://www.ctan.org/tex-archive/macros/latex/contrib/mhchem/ | mhchem]] | | |
+
+
+  * **Ejemplo listados de código y letra courier**
+    * {{:contribs:latex:anexosmanadmin_digna.zip|}}
+    * Autor: Digna González
+    * Licencia: CC-by-sa 3.0
+    * **Descripción:** Parte del documento Anexos al Manual del Administrador del PFC de Digna González. Tipo de letra courier (sans serif) y varios listados de código (comandos, respuesta a comandos y ficheros). Basado en la [[http://itsas.ehu.es/workgroups/plantillas_proyecto_fin_de_carrera|plantilla para PFC]] de Iñaki Silanes. [[http://itsas.ehu.es/workgroups/plantillas_proyecto_fin_de_carrera/leeme#contenidos_de_la_plantilla | Ver estructura de ficheros aproximada]]
+
+^ Paquetes ^ Entornos ^ Otros ^
+| [[http://en.wikibooks.org/wiki/LaTeX/Internationalization|inputenc y babel]] | [[http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures|figure]] | [[http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics#Including_graphics|includegraphics]] | 
+| [[http://en.wikibooks.org/wiki/LaTeX/Hyperlinks|hyperref]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Itemize|itemize]] | [[http://en.wikibooks.org/wiki/LaTeX/Formatting#Typesetting_URLs|url]] |
+| [[http://en.wikibooks.org/wiki/LaTeX/Page_Layout|fancyhdr]] |  | [[http://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing|label y ref]]  |
+| [[http://www.ctan.org/tex-archive/macros/latex/contrib/fancyvrb/|fancyvrb]] | [[http://www.ctan.org/tex-archive/macros/latex/contrib/fancyvrb/|SaveVerbatim]] | |
+| [[http://en.wikibooks.org/wiki/LaTeX/Packages/Listings|listings]] |[[http://en.wikibooks.org/wiki/LaTeX/Packages/Listings|lstlistings]] | |
+| [[http://en.wikibooks.org/wiki/LaTeX/Colors|color]]  | | |
+| [[http://www.ctan.org/tex-archive/macros/latex/contrib/textpos/|textpos]]   | | |
+| [[http://www.tug.dk/FontCatalogue/courier/|courier]] | | |
+
+==== Presentaciones ====
+
+* **Presentación de tesis Pablo González**
+    * {{:contribs:latex:pgn-tesis-latex-beamer.zip| Fuentes en .zip}}
+    * {{:contribs:latex:pgn-tesis-beamerpant.pdf| Documento en pdf}}
+    * [[http://lsi.vc.ehu.es/pablogn/investig/present-beamer/ | Más formatos y otra documentación tesis Pablo]]
+    * Autor: Pablo González-Nalda
+    * Licencia: CC-by-sa 3.0
+    * **Descripción:** Ejemplo de presentación en beamer.
+
+
+* **Presentación de Trabajo Fin de Master de Unai Aldasoro**
+    * {{:contribs:latex:presentacion_tfm_unai_aldasoro.zip| Fuentes en .zip}}
+    * {{:contribs:latex:presentaciontfm.pdf| Documento en pdf}}
+    * [[http://lsi.vc.ehu.es/pablogn/investig/present-beamer/ | Más formatos y otra documentación tesis Pablo]]
+    * Autor: Pablo González-Nalda
+    * Licencia: CC-by-sa 3.0
+    * **Descripción:** Ejemplo de presentación en beamer.

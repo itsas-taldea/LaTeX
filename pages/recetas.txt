@@ -1,0 +1,193 @@
+===== LaTeX / Recetas =====
+
+==== Cambiar "Cuadro" por "Tabla" e "Índice de cuadros" por "Índice de tablas"  ====
+
+Si no estamos usando el paquete //babel//, añadimos estas dos sentencias al preámbulo:
+
+<code>
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listtablename}{Índice de tablas}
+</code>
+
+Si estamos usando el paquete //babel// con el estilo //spanish//, se sobreescriben las definiciones y no funciona. Debemos escribir las sentencias indicando que debe afectar al //spanish//.
+
+<code>
+\renewcommand{\spanishtablename}{Tabla}
+\renewcommand{\spanishlisttablename}{Índice de tablas}
+</code>
+
+[[http://www.tex-tipografia.com/archive/spanish.pdf|Referencia]]
+
+==== Personalizar los encabezados y pies de página  ====
+
+El paquete //fancyhdr// nos permite definir encabezados y pies de página personalizados. Para utilizarlo no basta con declararlo, debemos indicar que queremos modificar el estilo de página:
+
+<code>
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+</code>
+
+A la hora de definir el contenido, podemos utilizar la orden //\fancyhead// junto con las siguientes opciones:
+
+| E | even page |
+| O | odd page |
+| L | left side |
+| C | centered |
+| R | right side |
+
+\\
+
+El siguiente ejemplo afecta a las páginas pares e impares:
+
+<code>
+\fancyhead[L]{Centro \\ Universidad del País Vasco}
+\fancyhead[R]{Nombre del autor \\ correo-e}
+
+\fancyfoot[L]{Nombre del trabajo}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{2010-2011}
+</code>
+
+Y éste es el resultado:
+
+\\
+|< 100% 30% 40% 30% >|
+^Centro  ^ ^  Nombre del autor^
+^Universidad del País Vasco  ^ ^  correo-e^
+| <color white/white>.</color> |||
+| <color white/white>.</color> |||
+|  Cuerpo de la página  |||
+| <color white/white>.</color> |||
+| <color white/white>.</color> |||
+^Nombre del trabajo  ^  Número de página  ^  2010-2011^
+\\
+
+Referencias: [[http://www.ctan.org/tex-archive/macros/latex/contrib/fancyhdr/fancyhdr.pdf|fancyhdr]], [[http://en.wikibooks.org/wiki/LaTeX/Page_Layout#Customising_with_fancyhdr|Customising with fancyhdr]]
+
+==== Añadir enlace a la bibliografía en el índice usando el entorno thebibliography ====
+
+Añadiendo el paquete //tocbibind// con la opción //numbib// enumera la bibliografía como si fuera un capítulo/sección más (en función del tipo de documento):
+
+<code>
+\usepackage[numbib]{tocbibind}
+</code>
+
+[[ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/tocbibind/tocbibind.pdf|Referencia]]
+
+==== Añadir enlace a secciones no numeradas en el índice ====
+
+Cuando queremos añadir una sección no numerada, por ejemplo un anexo, la declaramos con un asterisco. Esto evita la numeración, pero también evita que las secciones así declaradas aparezcan en el índice. Para introducirlas, deberemos declarar explícitamente el contenido de la entrada con la sentencia \addcontentsline{toc}{//nivel//}{//contenido de la entrada//}:
+
+<code>
+\section*{Anexo A}
+\addcontentsline{toc}{section}{Anexo A: anexo de prueba} 
+</code>
+
+En //nivel// podemos introducir todos aquellos que aparezcan en el índice: //chapter//, //section//, //subsection//... El tamaño y sangría de la entrada en el índice dependerán del //nivel//.
+\\
+
+[[http://minisconlatex.blogspot.com/2011/04/como-escribir-una-tesis-con-latex.html|Referencia]]
+
+==== Personalizar la captura de figuras y tablas ====
+
+Podemos cargar en el preámbulo el paquete //caption// con sus respectivas opciones para modificar la apariencia de las capturas. El siguiente ejemplo cambia el tamaño de letra a //scriptzise//, pone la etiqueta en negrita, el texto en cursiva y centra la última línea:
+
+<code>
+\usepackage[font=scriptsize,format=plain,labelfont=bf,textfont=it,justification=centerlast]{caption}
+</code>
+
+Otro ejemplo con el que hacemos que se muestre sólo el texto del caption, sin poner ningún nombre (no pondrá Figura x: Texto del caption, sino el texto directamente). Puede ser útil por ejemplo para presentaciones con beamer.
+
+<code>
+\usepackage{caption}
+\captionsetup{labelformat=empty,labelsep=none}
+</code>
+
+Por \'ultimo, un ejemplo en que se hace que el caption aparezca alineado a la izquierda. Esto es \'util cuando se quiera insertar una tabla o figura alineadas a la izquierda, porque por defecto el caption aparecer\'a centrado, independientemente de la alineaci\'on del resto del documento.
+
+<code>
+\usepackage[justification=raggedright, singlelinecheck=false]{caption}
+</code>
+
+[[http://www.ctan.org/tex-archive/macros/latex/contrib/caption/caption-eng.pdf|Referencia]]
+
+==== Numeración de figuras/tablas/ecuaciones por capítulo/sección/subsección ====
+
+En lugar de disponer de un solo contador para todo el documento, el paquete //amsmath// nos permite numerar las figuras/tablas/ecuaciones en el ámbito que queramos. En este ejemplo, el contador de figuras y tablas se reinicia en cada subsección y su apariencia es del tipo X.Y.Z donde X es el número de sección, Y el de la subsección y Z el de la figura/tabla. Las ecuaciones se numeran por sección con el aspecto X.Z:
+
+<code>
+\usepackage{amsmath}
+\numberwithin{figure}{subsection}
+\numberwithin{table}{subsection}
+\numberwithin{table}{section}
+</code>
+
+[[http://tex.stackexchange.com/questions/2445/how-to-create-multilevel-figure-table-numbers|Referencia]] [[http://www.iam.ubc.ca/old_pages/newbury/tex/numbering.html|Más sobre numeración]]
+
+==== Tabla única en una página, en la parte superior y no en el centro ====
+
+Cuando en una página hay sólo una tabla, ésta aparece en el centro. Si queremos que aparezca en la parte superior de la página, tenemos que escribir el siguiente código:
+
+<code>
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+</code>
+
+==== Algunos símbolos matemáticos ====
+
+Hay algunos símbolos que se utilizan frecuentemente y requieren paquetes adicionales para su inserción el LaTeX.
+  * Símbolo del euro. Paquete [[http://www.theiling.de/eurosym.html|eurosym]]. Comando \euro
+  * Símbolo periódico. Paquete [[http://www.ctan.org/tex-archive/macros/latex/contrib/yhmath/ | yhmath]]. comando \wideparen{}.
+
+==== Pasar presentaciones de PDF a Beamer  ====
+
+Este truco puede resultar útil cuando hay alguna diapositiva que no consigues dejar como quieres en //beamer//, cuando haces una presentación entre varias personas y el resto no usan LaTeX o simplemente para cuando quieres hacer una presentación con el //look & feel// de //beamer// y no tienes tiempo/paciencia ;P
+
+Básicamente se trata de insertar en tu presentación beamer diapositivas de un fichero PDF externo (generado por ejemplo a partir de un *.odp, *.ppt o de una presentación hecha de forma distribuida en Google Docs). Hardcodeando por simplicidad el nombre del fichero PDF original a raw.pdf, definimos los siguientes comandos:
+
+<code>
+\newcommand{\pdfframe}[1]{\frame{\includegraphics[page=#1]{raw.pdf}}}
+\newcommand{\pdfframex}[2]{\frame{\frametitle{#2}\includegraphics[page=#1,trim=0cm 0cm 0cm 2.5cm,clip=true]{raw.pdf}}}
+</code>
+
+El primero genera un //frame// de //beamer// y, en el espacio para contenido, pone la página indicada del fichero pdf. El segundo hace lo mismo pero quitando un fragmento de la parte superior (supuestamente el título) para incluir el título desde //beamer//.
+
+Con esto tu código LaTeX podría hacer algo como:
+
+<code>
+\section{Introducción}
+
+\subsection{Estado del Arte}
+\pdfframe{1}
+
+\subsection{Objetivos}
+\pdfframex{2}{Objetivos}
+
+% etc.
+</code>
+
+==== Tablas demasiado anchas para la página ====
+
+De vez en cuando te queda una tabla demasiado ancha para que quepa en la página. Un opción es partirla en dos o ponerla rotada en una página parte, pero puede que simplemente te valga con escalarla para que entre justa:
+
+<code>
+\resizebox {\linewidth}{!}{%
+\begin{tabular}{ccccccccc}
+% etc.
+\end{tabular}}
+</code>
+
+==== Autoescalado de imágenes ====
+
+Puedes incluir el siguiente código en el preámbulo si quieres que las imágenes que se pasen de ancho se ajusten automáticamente al ancho de la línea:
+
+<code>
+\newsavebox\IBox
+\let\IncludeGraphics\includegraphics
+\renewcommand\includegraphics[2][]{%
+  \sbox\IBox{\IncludeGraphics[#1]{#2}}%
+  \ifdim\wd\IBox>\linewidth\resizebox{\linewidth}{!}{\usebox\IBox}\else\usebox\IBox\fi}
+</code>
+
+[[http://tex.stackexchange.com/questions/12459/resize-large-images-that-exceed-page-margin-whilst-respecting-existing-scale|Referencia]]

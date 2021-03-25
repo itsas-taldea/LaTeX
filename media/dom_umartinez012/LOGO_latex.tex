@@ -1,0 +1,94 @@
+\documentclass[a4paper,titlepage,10pt,oneside]{article}
+
+\usepackage[utf8]{inputenc} % Para poder escribir acentos directamente
+\usepackage[spanish]{babel} % Para que LaTeX sepa que el texto está en español y divida las sílabas al final de una línea correctamente, entre otras cosas
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry} % Para ajustar los márgenes, ya que por defecto son mayores
+\usepackage{graphicx} % Para insertar imágenes
+\usepackage{fancyhdr} % Para definir encabezados y pies de página personalizados
+
+\pagestyle{fancy}
+
+\fancyhead[L]{\textbf{Proyecto de Domótica} \\ \small{LOGO! de Siemens}} % Páginas pares e impares, alineado a la izquierda en la cabecera
+\fancyhead[R]{\textbf{Unai Martinez Corral} \\ \small{unai.martinez@udc.es}} % Páginas pares e impares, alineado a la derecha en la cabecera
+\fancyfoot[C]{\textbf{\thepage}} % Páginas pares e impares, centrado en el pie
+\fancyfoot[L]{EUP Ferrol} % Páginas pares e impares, alineado a la izquierda en el pie
+\fancyfoot[R]{2009-2010} % Páginas pares e impares, alineado a la derecha en el pie
+
+\renewcommand{\footrulewidth}{0.4pt} % Grosor de la línea de separación del footer
+
+\usepackage[usenames,dvipsnames]{color} % Para disponer de 59 colores estandar
+
+\usepackage[
+    bookmarks=true, % Mostrar la herramienta de marcadores al mostrar el documento
+    unicode=true, % Acepta caracteres no latinos
+    pdftitle={Proyecto de Domotica}, % Metadatos fichero resultante (Título)
+    pdfsubject={Sistema por controlador programable LOGO! de Siemens}, % Metadatos fichero resultante (Asunto)
+    pdfauthor={Unai Martinez Corral}, % Metadatos fichero resultante (Autor)
+    pagebackref=true,
+    colorlinks=true, % Enlaces de colores
+    linkcolor=BlueViolet, % Color de enlace interno
+    urlcolor=RoyalBlue, % Color de enlace externo
+    ]{hyperref}
+
+%--------------------------------------------------------------------------
+
+\title{ % Definimos el título
+\Huge{\textbf{Proyecto de Dom\'otica}} \\
+\vspace{0.5cm}
+\Large{Sistema por controlador programable LOGO! de Siemens}
+}
+
+\author{ %Definimos autor
+\Large{Unai Martinez Corral} \\
+\small{unai.martinez@udc.es}}
+
+\date{2009-2010} %Definimos fecha
+
+%--------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Mostramos el título, autor y fecha
+
+\tableofcontents % Mostramos el índice
+
+%--------------------------------------------------------------------------
+
+% Incluimos los ficheros donde se encuentran las diversas secciones
+
+\newpage
+\input{LOGO_intro}
+
+\newpage
+\input{LOGO_ana}
+
+\newpage
+\input{LOGO_comp}
+
+\newpage
+\input{LOGO_lic}
+\input{LOGO_bib}
+
+%--------------------------------------------------------------------------
+
+\newpage
+\fancyfoot[C]{} % Redefinimos páginas pares e impares, centrado en el pie para dejarlo vacío y que no se muestre el número de página
+
+\begin{center}
+ \textcolor{White}{.} \\
+ \vspace{9cm}
+ \section*{\Huge{\textbf{\underline{Circuit Diagram}}}}\label{CircuitDiagram} %Creamos la sección con asterisco para que no se indexe
+\end{center}
+
+%--------------------------------------------------------------------------
+
+\newpage
+\fancyfoot[C]{} % Redefinimos páginas pares e impares, centrado en el pie para dejarlo vacío y que no se muestre el número de página
+
+\begin{center}
+ \textcolor{White}{.} \\
+ \vspace{9cm}
+ \section*{\Huge{\textbf{\underline{Planos}}}}\label{Planos} %Creamos la sección con asterisco para que no se indexe
+\end{center}
+
+\end{document}

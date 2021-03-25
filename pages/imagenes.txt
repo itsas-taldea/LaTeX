@@ -1,0 +1,44 @@
+====== Imágenes en LaTeX ======
+
+Hay varios mecanismos para generar gráficos directamente con código LaTeX, como PSTricks y tikz. La principal ventaja de generar los gráficos de este modo es que las fuentes utilizadas serán las mismas que para el resto del documento, con lo que se mantendrá el estilo del documento.
+
+En esta sección se reunirán algunos ejemplos y recursos para generar gráficas en LaTeX.
+
+===== PSTricks =====
+  * [[http://www.tug.org/PSTricks/main.cgi?file=doc/docs | Documentación del TeX User Group de India]]
+  * [[http://www.uni-kassel.de/fb16/rat/matlab/laprint/ | LaPrint:]] Exportación de figuras Matlab para su edición en LaTeX
+
+===== Tikz =====
+  *[[ http://www.texample.net/tikz/ | Texample]]: Ejemplos de figuras dibujadas con tikz
+  *[[http://www.texample.net/tikz/resources/| Texample resources]]: Paquetes, herramientas, tutoriales...
+ 
+
+==== Dia y Tikz ====
+Existe la posibilidad de exportar los diagramas hechos con [[http://projects.gnome.org/dia/|Dia]] como “LaTeX PGF macros" y después incluirlos en el documento.
+    * Hay que cargar el paquete en el preámbulo:
+
+<code>\usepackage{tikz}</code>
+
+    * Y cargar el diagrama exportado donde queramos que aparezca:
+
+<code>\input{archivo_exportado_de_dia.tex}</code>
+
+\\
+
+[[http://0pointer.com.ar/graficos-dia-en-latex/#content|Referencia]]
+
+\\
+
+El resultado no es muy allá. Jugando con las opciones del propio Dia se puede adecuar en cierta medida. Con un poco de maña se consiguen resultados para salir del paso en pocos minutos. Ejemplo:
+\\
+
+^ Exportado a PNG directamente desde Dia^Exportado a *.tex, compilado con PDFLaTeX y convertido el PDF a PNG^
+| {{:workgroups:latex:dia_dia.png?350|}} | {{:workgroups:latex:dia_latex.png?350|}} |
+
+===== Gnuplot =====
+
+ [[http://www.gnuplot.info/|Gnuplot]] dispone de una terminal de salida denominada //latex//. En la documentación del programa se describen todos los parámetros y opciones. Se pueden generar gráficos EPS o PS y cargarlos después, o dejar que directamente los genere LaTeX.
+
+\\
+
+[[http://computacion.cs.cinvestav.mx/~acaceres/courses/gnuplotCurso/node9.html|Referencia]]

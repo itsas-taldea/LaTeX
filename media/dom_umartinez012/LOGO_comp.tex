@@ -1,0 +1,48 @@
+\section{Componentes}
+
+\subsection{M\'odulo l\'ogico LOGO!}
+
+Debido al tipo de cargas a controlar, ser\'a requisito indispensable que el modelo escogido tenga salidas por rel\'e, y no por transistor, para evitar tener que introducir elementos externos. Asimismo, el n\'umero de \'estas que necesitamos (cinco) ser\'a otra caracter\'istica a tener en cuenta. En lo que a la tensi\'on de alimentaci\'on se refiere y la naturaleza de \'esta, optaremos por un m\'odulo que pueda alimentarse directamente de la red de la casa, lo cual supone que acepte 230 voltios de tensi\'on alterna. Por \'ultimo, dado que el usuario interactuar\'a con el sistema mediante pulsadores, y no directamente sobre el LOGO!, no es necesario que \'este incorpore pantalla, ya que la programaci\'on se llevar\'a a cabo mediante un ordenador.
+
+El modelo que cumple todas estas caracter\'isticas es el \hyperref[LOGO]{LOGO! 230RCO} (8 ED\footnote{\tiny{Entradas digitales}}, 4 SD\footnote{\tiny{Salidas digitales}}, 85-253V AC) cuya referencia es 6ED1052-2FB00-0BA1, y el m\'odulo de expansi\'on DM8 230R con referencia 6ED1055-1FB00-0BA1 que ofrece 4 ED y 4 SD m\'as, tambi\'en por rel\'e.
+
+\subsection{Pulsadores}
+
+En principio cualquier pulsador comercial disponible para instalaciones el\'ectricas dom\'esticas comunes es v\'alido para el sistema planteado. Dado que \hyperref[Siemens]{Siemens} tiene una amplia gama de este tipo de dispositivos, se ha optado por el modelo \hyperref[Pulsadores]{5TD2 111} de su catalogo ET D1 2010. Para este mismo soporte encontramos embellecedores con referencia 5TG7 tanto de la gama 'DELTA profil' como 'DELTA style' y 'DELTA natur', disponibles en diferentes colores y con variadas serigraf\'ias. En lo que respecta al marco, tenemos a nuestra disposici\'on diversos modelos de las mismas gamas bajo la referencia com\'un 5TG1.
+
+Debido a la baja impedancia de este tipo de dispositivos, aunque s\'olo se ha contemplado la instalaci\'on de un pulsador doble a fin de facilitar el desarrollo del proyecto, se podr\'ian utilizar dos pulsadores independientes, e incluso contar con m\'as de un pulsador que cumplan la misma funci\'on, en caso de que, por comodidad, el usuario final quisiera poder accionar los mecanismos desde diferentes puntos de la vivienda. Su instalaci\'on no revestir\'ia ninguna complicaci\'on, pues ir\'ian conectados en paralelo a la entrada correspondiente del LOGO!. El accionamiento de cualquiera de \'estos enviar\'ia la orden correspondiente el m\'odulo l\'ogico, sin necesidad de ser reprogramado para ello.
+
+\subsection{Iluminaci\'on h\'orreo}
+
+Como sucediera en el caso de los pulsadores, la gama de productos de diferentes fabricantes disponible para iluminaci\'on de exteriores es muy amplia y variada. Para esta aplicaci\'on concreta, que requiere una iluminaci\'on focalizada, pero no muy intensa, se han considerado soluciones basadas en LEDs. En el caso del fabricante \hyperref[OSRAM]{OSRAM}, encontramos el modelo '\hyperref[LED]{HYDROSTAR MINI OSTAR}' de dimensiones reducidas y muy bajo consumo (12W). Para iluminar adecuadamente el h\'orreo, utilizaremos cuatro de estos productos. Asimismo, para alimentarnos necesitaremos dos conversores \hyperref[OT]{OT 35/200-240/700} (35W).
+
+Como añadido, se iluminar\'a con pequeños puntos de luz el camino desde el porche hasta \'este. El modelo a utilizar ser\'a el '\hyperref[LED]{NAUTILUS PICO 1 LED}' (0.8-1.2W), tambi\'en de OSRAM, con un conversor \hyperref[OT]{OT 9/200-240/350} (9W). Dado que estos puntos se conectar\'an en paralelo con la iluminaci\'on del propio h\'orreo, no ser\'a necesario realizar ninguna modificaci\'on en la programaci\'on del m\'odulo l\'ogico. El consumo de todos los componentes dista mucho de alcanzar el m\'aximo soportado por las salidas del LOGO!, por lo que no habr\'a riesgo de fallo.
+
+\subsection{Aspersores y difusores}
+
+Debido a la diferencia de tamaños entre los sectores de riego y a la ubicacion de los componentes de riego -podemos verlos en el anexo '\hyperref[Planos]{Planos}'-, deberemos utilizar tanto aspersores como difusores para satisfacer las necesidades del diseño. Para este sistema en concreto, se ha optado por dos productos del fabricante \hyperref[RainBird]{RainBird}, como son los difusores de la serie \hyperref[1400]{1400} para aquellos sectores con un radio de alcance menor a 0,9m, los difusores de la serie \hyperref[1800]{1800} para sectores con un radio de hasta 5,5m y los aspersores de la serie \hyperref[3500]{3500} para los que tengan un radio mayor. El proyecto contempla el uso de dos aspersores para el sector de riego denominado 'C\'esped 1', cuatro difusores de la serie 1800 para los sectores 'C\'esped 2' y 'C\'esped 3', y tres difusores de la serie 1400 para el sector 'Flores 1'.
+
+Como puede verse en los planos, la ubicaci\'on de \'estos se ha definido con el objetivo de interferir lo m\'inimo posible en el uso del espacio, situ\'andolos en aquellos puntos de menor tr\'ansito. El hecho de que todos ellos permitan la selecci\'on del \'angulo de riego y tengan un alcance tambi\'en configurable, facilita la citada disposici\'on.
+
+\subsection{Electrov\'alvulas}
+
+Tomando en cuenta los difusores y aspersores escogidos en el apartado anterior, \'estos son los caudales y la presi\'on que necesitaremos para cada uno de los sectores:
+
+\begin{center}
+\begin{tabular}{c|c|c}
+ Sector&Caudal (min.)[$l \over h$]&Presi\'on (min)[bares]\\
+ \hline
+ Flores 1&60&1.4 \\
+ Césped 1&120&1.7 \\
+ Césped 2&20&1.0 \\
+ Césped 3&20&1.0 \\
+\end{tabular}
+\end{center}
+
+El mismo fabricante, RainBird, comercializa las el\'ectrov\'alvulas modelo \hyperref[LFV]{LFV-075} que cumplen con creces los requisitos para este sistema: caudal (45,6-1136 $l \over h$) y presi\'on (1,0-10,3 bares). Se alimentan con una tensi\'on alterna de 24V y su consumo de corriente en r\'egimen permanente es de 0.19A, mientras el pico de arranque es de 0.30A.
+
+Teniendo en cuenta el tipo de alimentaci\'on que requieren las electrov\'alvulas y el consumo m\'aximo de \'estas (debemos contar con la peor situaci\'on, cuando activemos todas al mismo tiempo), necesitaremos un tranformador de tensi\'on alterna de 230V a 24V con una potencia m\'inima de 28.8VA. En el catalogo de \hyperref[Polylux]{Polylux} encontramos el modelo con referencia PB40 que cumple las especificaciones, ofreci\'endonos una potencia m\'axima de 40VA. Trabaja con frecuencias de 50 a 60 Hz y, adem\'as, se ofrece en un encapsulado adecuado para su montaje en carril DIN, lo cual facilita su integraci\'on.
+
+\subsection{Magnetot\'ermicos}
+
+Como medida activa de seguridad, y con el fin de poder cortar la alimentaci\'on tanto de la iluminaci\'on como de las electrov\'alvulas, en caso de que el usuario as\'i lo quiera, se incorporar\'an sendos magnetot\'ermicos en el sistema. Siemens, una vez m\'as, pone a nuestra disposici\'on en su cat\'alogo el modelo con referencia \hyperref[Magnetotermicos]{5SJ3106-7}, que consiste en un interruptor de un \'unico polo que soporta 6A de corriente y permite su montaje en carril DIN. Incorporaremos un dispositivo de este tipo entre la alimentaci\'ion y los contactos de los componentes de iluminaci\'on. Otro, se situar\'a entre la alimentaci\'on y el transformador al que conectaremos posteriormente las electrov\'alvulas.

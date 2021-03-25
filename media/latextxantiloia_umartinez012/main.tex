@@ -1,0 +1,59 @@
+% Karrera Amarierako Proiektua egiteko LaTeX txantiloia
+% itsas.ehu.es/workgroups/latex
+% Unai Martinez Corral
+% umartinez012@ikasle.ehu.es
+
+\documentclass[a4paper,titlepage,10pt,oneside]{report}
+
+\usepackage{import}
+\inputfrom{./config/}{config.tex}
+
+%--------------------------------------------------------------------------
+\begin{document}
+\DOpresetDOtitlepg
+
+\chapter{Aurkibide orokorra} \DOtls
+%--------------------------------------------------------------------------
+\chapter{Memoria}
+\pagestyle{empty}\input{dedicatory}\pagestyle{body}
+\DOmtls{\DOmtoc\DOmlof\DOmlot\DOmlos}
+
+\include{intro}
+\include{license}\label{lic}
+\include{state}
+
+\subincludefrom{./secta/}{secta_main}
+\subincludefrom{./sectb/}{sectb_main}
+
+%--------------------------------------------------------------------------
+\chapter{Neurketak eta kalkuluak} \DOmtls{\DOmtoc}
+\subincludefrom{./measures/}{measures_main}
+
+\chapter{Eranskinak} \DOmtls{\DOmtoc}
+\attref
+\subincludefrom{./att/}{att_main}
+\ordref
+
+\chapter{Baldintzen agiria} \DOmtls{\DOmtoc}
+\subincludefrom{./cond/}{cond_main}
+
+\chapter{Aurrekontua}
+
+%--------------------------------------------------------------------------
+\nocite{*}
+\chapter{Bibliografia}
+\bibliographystyle{ieeetr}
+\fancyhead[L]{\slshape \nouppercase{\bibname}}
+\bibliography{bibliography}
+
+\end{document}
+
+%Buscar recursivamente ficheros que contengan una expresión regular (expr), omitiendo los propios de svn
+%find -iname \*expr\* -not -name \*expr\*svn\*
+%Para cambiar el nombre utilizar 'svn rename'
+
+%Buscar recursivamente en los ficheros una expresión regular (from) y reemplazarlas por otra (to)
+%ack-grep -l --print0 --text 'from' | xargs -0 -n 1 sed -i -e 's/from/to/g'
+
+%Borrar recursivamente todos los directorios de SVN
+%rm -rf `find . -type d -name .svn`

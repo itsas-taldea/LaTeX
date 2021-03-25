@@ -1,0 +1,147 @@
+===== LaTeX Euskeraz =====
+
+//Babel// paketea //basque// parametroarekin kargatuz gero, konpiladoreak zuzenean itzuliko dizkigu aurkibideak, irudi eta taulen izenak, kapituluenak, etab. Hala ere, hitzak baino ez ditu ordezkatzen, ez hauek aurkezteko ordena. Hau da, Kapitulua 1, Irudia 14, Taula 8, etab. agertuko dira. Euskeraz ez dugunez horrela idazten, baizik eta alderantziz (1. Kapitulua, 14. Irudia, 8.Taula...) zenbait aldaketa burutu beharko ditugu dokumentuaren atarikoan (\begin{document} baino lehen).
+
+==== Karrera Amaierako Proiektuak idazteko txantiloia ====
+
+Jarraian adierazten diren guztiak bateratzen dituen //report// klasean oinarritutako txantiloia (aldaketa txikiekin //article// klasearekin ere erabili daitekeena):
+
+\\
+
+{{:eu:workgroups:latex:latextxantiloia.pdf|}}
+
+{{:eu:workgroups:latex:latextxantiloia.tar.gz|}}
+
+\\
+
+PDF dokumentuak, txantiloiaren adibide izateaz gain, erabiltzeko oinarrizko argibideak biltzen ditu. Konprimatutako fitxategiak PDFa eta iturri guztiak ditu.
+
+==== Banakako moldaketak ====
+
+=== Irudi eta taulak atzitzea ===
+
+<code>
+\makeatletter 
+\renewcommand{\fnum@figure}{\thefigure.~\figurename}
+\renewcommand{\fnum@table}{\thetable.~\tablename}
+\makeatother
+</code>
+
+[[http://www.tex.ac.uk/cgi-bin/texfaq2html?label=captsty|Erreferentzia]] [[http://www.latex-community.org/forum/viewtopic.php?f=5&t=3732|\makeatletter eta \makeatother buruz]]
+
+=== Kapituluen izenburua ===
+
+<code>
+\makeatletter
+\def\@makechapterhead#1{%
+\vspace*{50\p@}%
+{\parindent \z@ \raggedright \normalfont
+\ifnum \c@secnumdepth >\m@ne
+\huge\bfseries \thechapter.\space\@chapapp
+\par\nobreak
+\vskip 20\p@
+\fi
+\interlinepenalty\@M
+\Huge \bfseries #1\par\nobreak
+\vskip 40\p@
+}}
+\makeatother
+</code>
+
+[[http://tp.lc.ehu.es/jma/basque.html|Erreferentzia]]
+
+\\
+
+Nahi izatekotan, badago zuzenean Kapituluen izenburuen estiloa aldatzeko aukera. Zenbait paketek "Kapitulu" hitza kentzen dute, eta zuzenean zenbakia aurkezten dute guk ezarritako izenburuarekin. Adibidez:
+
+<code>
+\usepackage[Bjornstrup]{fncychap}
+</code>
+
+[[http://ftp.gui.uva.es/sites/ctan.org/macros/latex/contrib/fncychap/fncychap.pdf|Erreferentzia]]
+
+=== Dataren formatoa ===
+
+<code>
+\newcommand\gaur{{\number\year}ko\space\ifcase\month\or
+         urtarrilak\or otsailak\or martxoak\or apirilak\or
+     	maiatzak\or ekainak\or uztailak\or abuztuak\or
+         irailak\or urriak\or azaroak\or
+         abenduak\fi~\number\day}
+</code>
+
+\maketitle baino lehen hurrengoa jarri:
+
+<code>
+\date{\gaur}
+</code>
+
+[[http://list.ehu.es/pipermail/itsas/2008-October/001066.html|Erreferentzia]]
+
+=== Hitzak zatitzea ===
+
+Baliteke LaTeX-ek, nahiz eta //babel// paketea //basque// aukerarekin kargatu, hitzak gaizki zatitzea edo zuzenean zein silaba dituen ez jakitea. Nahiz eta zentzu handirik ez izan, //texlive-lang-french// paketea instalatuta (GNU/Linux-en ari garela suposatuz) konpondu egiten da.
+\\
+Honi buruz informazio gehiago ITSAS-en posta zerrendako artxiboan aurkitu daiteke: [[http://list.ehu.es/pipermail/itsas/2008-October/thread.html|Gaia "Zalantzak LyX programarekin" duten mezuak begiratu]]
+
+=== Xuxen hiztegia ===
+
+XUXEN-en instalazioa latex editorean  egiteko pauso hauek eman behar dira:
+  - Hiztegia (eu-ES-hunspell.tar.gz izenekoa) www.euskara.euskadi.net web gunetik jaitsi. [[http://www.euskara.euskadi.net/r59-738/es/contenidos/informacion/euskarazko_softwarea/es_9568/adjuntos/xuxen/eu-ES-hunspell.tar.gz|Zuzenean jaisteko hemen sakatu]].
+
+  - Hiztegia deskonprimatu (tar zxf eu-ES-hunspell.tar.gz komandoa erabiliz, esaterako). Bertan bi fitxategi daude: hiztegia eta afixa.
+
+  - Zure latex editoreak hiztegiak gordetzen dituen karpetan bi fitxategi hauek sartu. Instalazioaren arabera kokapena aldatu daiteke. TexmakerX erabiltzen baduzu, sakatu Options -> Configure TexmakerX -> General. //Dictionaries// atalean agertzen da karpeta.
+
+=== Hizkuntzen arteko aldaketa ===
+
+Baliteke zenbait egoeratan euskaraz idatzitako testuren baten beste hizkuntzetan idatzitako atalak edo zatiak izatea. Babel paketeak halakoen hizkuntzen artean aldatzea ahalbidetzen du, nagusiak, kargatutako azkenak, kapitulu, atal eta azpiatalen izenburuen hizkuntza ezarriko duelarik.
+
+Euskara hizkuntza nagusia izan dadin baina zenbait atal gazteleraz jartzeko:
+
+<code>
+\usepackage[spanish,basque]{babel} 
+\selectlanguage{basque}
+</code>
+
+Hizkuntza aldatu nahi dugun tokietan:
+
+<code>
+\selectlanguage{spanish}
+Texto en castellano.
+\selectlanguage{basque}
+</code>
+
+[[http://en.wikibooks.org/wiki/LaTeX/Internationalization#Hyphenating|Erreferentzia]]
+
+=== Linuxen euskarazko hiztegiak instalatu ===
+
+Kilen zuzentzaile ortografikoa erabiltzeko, euskarazko hiztegiak instalatuta egon behar dira: 
+
+<code>
+sudo apt-get install aspell aspell-eu-es
+</code>
+
+=== Paragrafo bakoitzeko lehenengo lerroan tartea uztea ===
+
+//Babel// paketeak gazteleraz paragrafo bakoitzeko lehenengo lerroan tartea [[http://www.latex-community.org/forum/viewtopic.php?f=44&t=8833&start=0|uzten du]], ingeleraz eta berez LaTeX-ek ez bezala. Euskarazko aukerak ingelerazkoaren antzera, ez du tarterik. Jarri nahi izatekotan //indentfrist// paketea kargatu beharko dugu:
+
+<code>
+\usepackage{indentfirst}
+</code>
+
+[[http://kb.mit.edu/confluence/pages/viewpage.action?pageId=3907353|Referencia]]
+
+==== Erreferentziak ====
+
+[[http://tp.lc.ehu.es/jma/basque.html|Juan M. Aguirregabiria]]
+
+==== ToDo ====
+
+  * http://link.springer.com/chapter/10.1007/978-3-540-27773-6_3?no-access=true
+
+  * http://www.ctan.org/pkg/basque-book
+  * http://www.ctan.org/tex-archive/macros/latex/contrib/basque-date
+
+  * http://list.ehu.es/pipermail/itsas/2012-September/002128.html
+  * http://bosgarrena.blogspot.com.es/2012/09/apa-eta-lyx-ii-eta-lyz-eta-kbibtex.html

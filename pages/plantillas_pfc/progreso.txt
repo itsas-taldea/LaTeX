@@ -1,0 +1,32 @@
+===== Estado actual =====
+
+La última versión es la **r23**.
+
+===== TODO =====
+
+  - ¿Funciona en Windows?
+
+===== Feature request =====
+
+
+===== Changelog =====
+
+  * Vesión **r23** (17/10/2008)
+    * Añadido soporte para [[http://es.wikipedia.org/wiki/LyX|LyX]]
+    * Añadidas plantillas de Tesis (en/eu/es)
+
+\\
+
+  * Versión **r13** (06/06/2007)
+    * Añadida plantilla PFC en euskera
+    * Añadida licencia (CC by-sa 3.0 para el conjunto de fichero de configuración, LPPL 1.2 para itsas_pfc.cls).
+
+\\
+
+  * Versión **r10** (31/05/2007)
+    * Añadida plantilla PFC en castellano
+
+\\
+
+   * Versión **r7** (29/05/2007)
+    * Primer borrador plantilla PFC en inglés

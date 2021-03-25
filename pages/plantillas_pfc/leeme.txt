@@ -1,0 +1,141 @@
+La plantilla está diseñada con el objetivo de hacer lo más sencillo posible su uso por parte de personas que no sepan/quieran trastear con los ficheros de configuración. Para ello, se ha tratado de separar lo más posible la **configuración** del **contenido**. Además se ha tratado de automatizar lo más posible la compilación del documento final, proporcionando un ejecutable que lleva a cabo la tarea.
+
+Por comodidad a la hora de desarrollarlas, se han utilizado nombres de ficheros iguales (todos en inglés) para ficheros equivalentes en las plantillas de cada idioma. Espero que esto no sea una molestia para el usuario, ya que usar nombres iguales es realmente una gran ayuda para el desarrollo.
+
+===== Lo básico =====
+
+Editar un documento con LaTeX implica principalmente dos pasos: 
+
+  - **Editar** un fichero (normalmente con extensión .tex), para incluir en él el contenido en sí (y preferencias de formateo si fuese necesario). 
+  -  **Compilar** el/los fichero(s) que hemos editado, para lograr el documento formateado ([[http://es.wikipedia.org/wiki/DVI (TeX)|DVI]], [[http://es.wikipedia.org/wiki/PostScript|PS]] o [[http://es.wikipedia.org/wiki/Portable_Document_Format|PDF]]).
+
+Todo documento LaTeX consta de un //preámbulo//, donde se especifican valores iniciales para variables que rigen el formato, seguido del //cuerpo// del documento, donde  el usuario incluye el texto en sí.
+
+Esta plantilla pretende automatizar lo más posible el formateo del documento, y también la posterior compilación, para que el usuario se centre lo más posible en el paso intermedio: la introducción del contenido en los ficheros.
+
+===== Contenidos de la plantilla =====
+
+Las ideas del punto anterior están implementadas de la siguiente manera en la plantilla:
+
+==== Contenido ====
+
+Son los ficheros contenidos en el directorio raíz donde descomprimas el fichero [[http://es.wikipedia.org/wiki/Tar|TAR]]. Incluyen:
+
+  * //Main.tex// - Fichero principal. Este fichero se encarga de llamar a todos los demás ficheros que incluye la plantilla, y en él deberás introducir, por ejemplo, los nombres de los ficheros donde tengas escrito cada capítulo, o el fichero de bibliografía. Está bastante profusamente comentado, para resultar lo más comprensible posible. Puedes cambiar su nombre, pero debes reflejar dicho cambio en //Utils/run_latex.pl//.
+
+  * //file-*.tex// - varios ficheros separados por tipo de contenido: uno por cada capítulo, la introducción, la bibliografía, apéndices, etc. Puedes cambiar los nombres, borrar y crear ficheros a voluntad, pero no olvides reflejar los cambios que hagas en //Main.tex//.
+
+==== Configuración ====
+
+Estos ficheros residen en el directorio //Config///, y en general no los tendrás que tocar para nada (excepto //cover.tex//), a menos que sepas lo que estás haciendo. Incluyen:
+
+  * //appendices.tex// - formato de los capítulos de apéndice
+
+  * //begin.tex// - configuración al comienzo del documento
+
+  * //bibliography.tex// - formato de la bibliografía
+
+  * //chapters.tex// - formato de los capítulos
+
+  * //cover.tex// - portada. Este fichero **sí** que lo vas a tener que cambiar.
+
+  * //headers.tex// - formato de las cabeceras y pies de página
+
+  * //itsas_pfc.cls// - fichero con el estilo general del PFC
+
+  * //jacs.bst// - fichero con el estilo de la bibliografía (estilo [[http://en.wikipedia.org/wiki/Journal_of_the_American_Chemical_Society|JACS]]). Lo puedes cambiar por cualquier otro, pero recuerda reflejar el cambio en //Main.tex//.
+
+  * //pfc_options.tex// - más opciones generales
+
+  * //rename.tex// - variables que quieres renombrar en tu documento. Por ejemplo, puedes hacer que todas las tablas se llamen "Tabla" en vez de "Cuadro".
+
+  * //spanish5.ldf// - estupendo paquete Babel para localización en castellano.
+
+  * //toc.tex// - formato del índice general (table of contents).
+
+===== Cómo usar la plantilla =====
+
+==== Requerimientos ====
+
+Como cualquier otro trabajo en LaTeX, esta plantilla necesita una instalación funcional de dicho software. Bajo GNU/Linux, esto supone instalar los paquetes //tetex// o //texlive//. Concretamente, y bajo Debian, el autor tiene instalados los siguientes paquetes:
+
+texlive-base
+texlive-base-bin
+texlive-common
+texlive-doc-base
+texlive-fonts-recommended
+texlive-generic-recommended
+texlive-latex-base
+texlive-latex-extra
+texlive-latex-recommended
+texlive-pictures
+texlive-pstricks
+latex-xcolor
+
+En otras distribuciones Linux no debería ser difícil encontrar los paquetes correspondientes. Lamentablemente, no tengo suficiente experiencia con LaTeX en entornos Windows o MacOS, y no puedo asegurar que funcione en esas plataformas, ni sé qué paquetes o software necesitan.
+
+En cualquier caso, aparte de una instalación mínima de LaTeX, los paquetes de software que hay que instalar son aquellos que proporcionen todos los paquetes de LaTeX que la plantilla pide, que son aquellos que se detallan en el fichero //Config/pfc_options.tex//, a saber:
+
+fancyhdr
+courier
+setspace
+longtable
+lscape
+color
+rotating
+textcomp
+minitoc
+epsf
+inputenc
+textpos
+srcltx
+
+En realidad no todos los paquetes son imprescindibles, por lo que el usuario avanzado puede prescindir de los paquetes que no necesite, editando el fichero //pfc_options.tex//.
+
+
+==== Editando ====
+
+Como se ha mencionado arriba, el fichero principal es //Main.tex//, y todo el material que sea incluido en la obra deberá ser referenciado en tal fichero. Se recomienda escribir el texto de forma modular, por ejemplo dedicando un fichero a cada capítulo. Para ello, es muy sencillo seguir la estructura que tiene //Main.tex// por defecto. Puedes cambiar el nombre de los ficheros que compongan la obra, pero todos los cambios que hagas deberás reflejarlos en //Main.tex//.
+
+La edición de los ficheros puedes hacerla con cualquier editor de texto, entre los que pueden mencionarse [[http://en.wikipedia.org/wiki/Vim_%28text_editor%29|vim]], [[http://en.wikipedia.org/wiki/Emacs|emacs]], o cualquier otro de [[http://en.wikipedia.org/wiki/List_of_text_editors|esta lista]].
+
+=== LyX ===
+
+La plantilla tiene soporte, al menos parcial, para [[http://itsas.ehu.es|LyX]]. Puedes editar los ficheros de capítulos/secciones/apéndices con LyX, y el script //Utils/run_latex.pl// debería hacerse cargo de convertir e integrar los ficheros .lyx sin que tú hagas nada.
+
+Ciertos ficheros, como //Main.tex// o los del directorio //Config///, se recomienda modificarlos sólo con editores de texto plano, como vim o emacs.
+
+==== Compilando ====
+
+Se incluye un [[http://en.wikipedia.org/wiki/Scripting_language|script]] de [[http://en.wikipedia.org/wiki/Perl|Perl]] que automatiza el proceso de compilado. Para ejecutarlo desde una consola, llamar el siguiente commando desde el directorio donde esté //Main.tex//: 
+
+<code>% Utils/run_latex.pl</code>
+
+Este script acepta un argumento, que debe consistir en una o varias cifras del 1 al 4, unidas entre sí. El efecto de cada cifra es:
+
+1: Compilar un .dvi
+2: Compilar un .ps
+3: Compilar un .pdf
+4: Compilar y ver (.ps o .pdf, según se haya compilado)
+
+Por ejemplo la siguiente línea compila un PDF y lo abre con un lector de PDFs.
+
+<code>% Utils/run_latex.pl 34</code>
+
+Los lectores predeterminados son ''acroread'' para PDF y ''gv'' para PS. Si quieres cambiarlos, edita las líneas correspondientes de //Utils/run_latex.pl//.
+
+La compilación puede hacerse, por supuesto, manualmente. Para ello hay que ejecutar, básicamente, los siguientes comandos (los cuatro, y en ese orden):
+
+<code>
+% latex Main
+% latex Main
+% bibtex Main
+% latex Main
+</code>
+
+Con esto tendremos un fichero DVI, que podremos pasar a PS o PDF de la siguiente manera:
+
+<code>
+% dvips Main.dvi -o Main.ps
+% dvipdf Main.dvi -o Main.pdf
+</code>

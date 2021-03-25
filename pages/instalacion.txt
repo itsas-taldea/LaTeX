@@ -1,0 +1,36 @@
+====== Instalación de editores y compiladores LaTeX ======
+
+En esta sección se describe cómo instalar lo necesario para crear documentos LaTeX (compiladores y editor) en varios sistemas operativos.
+
+Existen múltiples editores para LaTeX, muchos de ellos libres y gratuitos, por lo que el usuario puede elegir aquél con el que se sienta más cómodo, no se tiene por qué limitar a los listados en esta página.
+
+Suele ser recomendable instalar primero los compiladores y después los editores, para que la configuración del editor se realice de forma automática.
+
+===== GNU/Linux =====
+En GNU/Linux, los compiladores están en el paquete **texlive**. 
+
+Si se instala **Kile** como editor (es el editor más popular en GNU/Linux), los compiladores se instalarán como dependencias automáticamente:
+  sudo aptitude install kile
+  
+Si se prefiere, también se pueden usar otros editores como [[http://texmakerx.sourceforge.net/#downloads | TexMakerX]] o Gedit, con el [[http://www.michaels-website.de/gedit-latex-plugin/ | plugin para LaTeX]].
+
+
+===== Windows =====
+==== Compiladores ====
+
+Los compiladores para Windows están en el paquete [[http://miktex.org/2.9/setup | MikTeX]].
+Hay una versión básica y otra completa. La básica, instala pocos paquetes, y según se vayan necesitando más, se irán instalando a través de Internet. Con la completa, se instalan más cosas desde el principio (ocupará más espacio). 
+
+Si se va a trabajar normalmente conectado a Internet, con la versión básica es suficiente.
+
+==== Editores ====
+Existen muchos editores de LaTeX. Uno de ellos es [[http://texstudio.sourceforge.net/#downloads | TeXstudio]], (antes llamado TexMakerX), software libre, multiplataforma y gratuito.
+
+Hay una versión portable y otra instalable: suele ser más cómo utilizar la [[http://sourceforge.net/projects/texstudio/files/texstudio/TeXstudio%202.2/texstudio22_win32.exe/download |instalable]], porque la mayoría de las opciones de configuración se detectan automáticamente.
+
+===== MAC OS =====
+==== Compiladores ====
+El compilador para MAC OS es [[http://www.tug.org/mactex/ | MacTeX]]. El paquete de instalación ocupa unos dos gigas, por lo que se recomienda utilizar una red de banda ancha o descargar algún paquete de tamaño más reducido de [[http://www.tug.org/mactex/2010/morepackages.html | este enlace]].
+
+==== Editores ====
+ Uno de los editores disponibles es [[http://texstudio.sourceforge.net/#downloads | TeXstudio]] (antes llamado TexMakerX), software libre, multiplataforma y gratuito.

@@ -1,0 +1,866 @@
+% \documentclass[xcolor=dvipsnames,handout]{beamer}
+\documentclass[xcolor=dvipsnames]{beamer}
+% Para imprimir varias en una
+\usepackage{pgfpages}
+% \pgfpagesuselayout{8 on 1}[a4paper,border shrink=5mm]
+% \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm, landscape]
+\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+% \usetheme{Goettingen}
+% \usetheme{Warsaw}
+% \usetheme[left,hideothersubsections,width=2.5cm]{PaloAlto}
+% \usetheme[left,width=1.8cm, hideothersubsections]{PaloAlto}
+\usetheme[left,width=1.8cm, hideothersubsections,numbers,totalnumber,compress,sidebarshades]{PaloAlto}
+\setbeamertemplate{footline}[frame number]
+
+% \useoutertheme{shadow}
+\useinnertheme{rounded}
+
+\usefonttheme{professionalfonts}% font de LaTeX
+% \usefonttheme[stillsansserifsmall]{serif}
+
+% \definecolor{suave}{rgb}{0.95, 0.90, 0.00}
+% \definecolor{magenta}       {cmyk}{0   , 1   , 0   , 0   }
+% \definecolor{violetred}     {cmyk}{0   , 0.81, 0   , 0   }
+% \definecolor{purple}        {cmyk}{0.45, 0.86, 0   , 0   }
+% \definecolor{plum}          {cmyk}{0.50, 1   , 0   , 0   }
+% \definecolor{s}   {cmyk}{0, 0.1, 0   , 0  }
+\definecolor{mivioleta}{rgb}{0.25,0.1,0.25}
+
+\usecolortheme[named=mivioleta]{structure} % violet
+% \setbeamercolor{normal text}{bg=Plum,fg=white}
+% \setbeamercolor{normal text}{bg=s,fg=black}
+\setbeamercolor{normal text}{bg=violet!5,fg=black}
+\setbeamertemplate{items}[ball]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+% \useoutertheme{umbcfootline}
+
+\usepackage[spanish]{babel}     % Paquete de lenguaje español
+\usepackage[latin1]{inputenc}
+\usepackage{latexsym} % S´mbolos
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color,graphicx}
+\usepackage{eurosym}
+% 	\usepackage[pdftex]{graphicx}  % Paquete de gráficos
+% \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+% \defverb\payback!http://www.loyaltypartner.com/de/download/Studie_Verbraucher_Okt03.pdf!
+
+%  Hace saltar una línea entre párrafos
+% \addtolength{\parskip}{\baselineskip}
+%  Hace saltar unos puntos entre párrafos
+% \addtolength{\parskip}{5pt}
+\addtolength{\parskip}{5pt}
+
+% \usepackage{multimedia}
+%
+% 	% y la inclusión (pero no la incrustación) de ficheros de vídeo AVI o
+% 	% QuickTime es tan fácil como:
+%
+% \movie[width=60mm,height=45mm,borderwidth=0.5mm]{Título}}{fichero.avi}\\
+% \movie[width=60mm,height=45mm,poster,showcontrols]{}{fichero.mov}\\
+%
+% 	% así como para audio (estos sí que pueden ser incrustables):
+%
+% \sound[inlinesound,samplingrate=22050,encoding=muLaw,bitspersample=8, channels=2,label=misonido] {} {fichero.au}\\
+%
+% \hyperlinksound[]{misonido}{\includegraphics[width=10mm]{inicio.png}}
+% \hyperlinkmute{\includegraphics[width=10mm]{paro.png}}\\
+
+% \href{run:video.avi}{videolink}
+% \usepackage{movie15}
+
+
+% % rellenamos la info del fichero PDF
+\hypersetup{
+    pdftitle =
+        TOPOS,
+    pdfauthor =
+        Pablo González Nalda (http://lsi.vc.ehu.es/pablogn/),
+    pdfsubject=
+        Presentación de la Tesis Doctoral,
+    pdfkeywords =
+        Robótica Evolutiva
+}
+
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\def\newblock{}
+
+
+% % % % % % Para imprimir 2 pantallas en una directamente
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+% \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm, landscape]
+% \mode<handout>{\setbeamercolor{background canvas}{bg=black!5}}
+
+\begin{document}
+
+
+
+% \title[]{Navegación}
+\title[]{Navegación mediante Evolución de Redes Neuronales Recurrentes y Dinámicas}
+\subtitle{	Tesis Doctoral dirigida por Blanca Cases y Alvaro Moreno Bergareche}
+
+\author{Pablo González Nalda}
+% \logo{\includegraphics[scale=0.13]{logoEHU}}
+\logo{\includegraphics[width=1.6cm]{logoEHU}}
+\institute[LSI]{Depto. de Lenguajes y Sistemas Informáticos}
+% \date{\today}
+\date{10 de octubre de 2008}
+
+% \begin{frame}[plain]
+% \href{run:kk.avi}{videolink}
+% % 	\begin{center}
+% % 		\begin{figure}[ht]
+% % 			\includemovie[ poster, % shows initial frame before play begins controls
+% % 			, % controls are only available on a Mac (they will not appear on windows.)
+% % 			% (if no controls are used, then you can double click the movie to start it.)
+% % 			repeat, % repeat the movie over and over.
+% % 			text=(Loading movie...) % text shown while loading movie
+% % 			]{6cm}{6cm}{kk.avi}
+% % 		\end{figure}
+% % 	\end{center}
+% \end{frame}
+
+\begin{frame}[plain]
+	\begin{columns}[c]
+		\begin{column}[t]{7.9cm}
+			\begin{figure}
+				\begin{center}
+					\includegraphics[width=3cm]{logoEHU}
+				\end{center}
+			\end{figure}
+			\titlepage
+		\end{column}
+		\begin{column}[t]{1.8cm} % para centrar la pág de título es como la anchura del usetheme
+			\\
+		\end{column}
+	\end{columns}
+\end{frame}
+\author{\scshape Contenidos}
+
+
+% 	\subsection{Introducción}
+		\begin{frame}
+			\frametitle{Introducción}
+			Objetivo: desarrollo exploratorio de la Robótica Evolutiva con fines técnicos.
+
+			Marco teórico verificado experimentalmente.
+
+			Experimentos:
+			\begin{itemize}
+				\item Simulación de un robot y su entorno
+				\item comportamiento de navegación en entornos no estructurados
+				\item sonidos reales como únicos puntos de referencia
+			\end{itemize}
+		\end{frame}
+
+\begin{frame}
+	\frametitle{Contenidos de la presentación}
+                        \tableofcontents[
+                                % ...showing the active section in the context of other sections...
+                                sectionstyle=show/show,
+                                % ... while hiding subsections
+                                subsectionstyle=hide/hide/hide
+                        ]
+\end{frame}
+
+\AtBeginSection[] {
+%                 \begin{frame}[plain]
+% 				Sección \thesection{}
+%                 \end{frame}
+                \begin{frame}
+%                         \frametitle{
+%                                 % Put in the section number
+%                                         \sectionname{} \thesection{}%:
+%                                 % Now also put in the section description
+%                          %            [description]
+%                                 }
+                                % Generate the table of contents...
+                        \tableofcontents[
+                                % ...showing the active section in the context of other sections...
+                                sectionstyle=show/shaded,
+                                % ... while hiding subsections
+                                subsectionstyle=hide/hide/hide
+                        ]
+                \end{frame}
+        }
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+
+\section{Área de investigación}
+	\subsection{Robótica}
+		\begin{frame}
+			\frametitle{Robótica en entornos no estructurados}
+			Entorno no estructurado: representación inviable
+			\begin{itemize}
+				\item por falta de información,
+				\item porque el entorno es cambiante
+				\item descripción no manejable por complicada.
+			\end{itemize}
+			Robótica Evolutiva adecuada (diseño automático)
+		\end{frame}
+		\begin{frame}
+			\frametitle{\textit{Espectro de control robótico}}
+			\textit{Espectro de control robótico}~\citep{arkin:98a}: sistemas deliberativos
+				\begin{itemize}
+					\item simbólicos,
+					\item basados en Inteligencia Artificial ``clásica'' y
+					\item adecuados para entornos altamente estructurados,
+				\end{itemize}
+			a sistemas reactivos
+				\begin{itemize}
+					\item subsimbólicos,
+					\item basados en sistemas conexionistas y
+					\item adecuados para entornos no estructurados.
+				\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Conceptos para la Robótica}
+				\begin{description}[Simulaciones mínimas:]
+					\item [Corporeidad:] el controlador depende de la morfología del robot~\citep{bro:Repr}
+					\item [Ubicación:] un robot debe estar acoplado a su entorno y tomarlo como el modelo del mundo~\citep{bro:Repr}
+					\item [Simulaciones mínimas:] se pueden construir simulaciones sencillas que produzcan controladores válidos para robots físicos~\citep{jak}
+				\end{description}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Diseño automático}
+			Diseño \textit{a mano}: el programador elige
+				\begin{itemize}
+					\item la manera de procesar los datos
+					\item determina qué información es relevante
+				\end{itemize}
+
+			Diseño automático: el sistema facilita
+				\begin{itemize}
+					\item la evolución el conjunto de hardware y controlador
+					\item la aplicación de los conceptos de corporeidad y ubicación
+					\item la decisión de la estructura perceptiva
+				\end{itemize}
+		\end{frame}
+	\subsection{Entorno}
+		\begin{frame}
+			\frametitle{Inspiración Biológica}
+			Referente en el diseño de robots autónomos
+				\begin{itemize}
+					\item funcional
+					\item estructural
+					\item con diferentes niveles de inspiración
+				\end{itemize}
+
+			Robótica Biomimética: copia estructural y funcional
+		\end{frame}
+		\begin{frame}
+			\frametitle{Entorno multidisciplinar}
+			Referente teórico para objetivo técnico, no descriptivo:
+				\begin{description}[Filosofía de la Ciencia:]
+					\item [Biología:] evolución y morfología
+					\item [Neurociencias:] estructura y su relación con la percepción
+					\item [Psicología:] percepción básica y comportamiento
+					\item [Filosofía de la Ciencia:] visión de conjunto y abstracción de los mecanismos
+				\end{description}
+			Prioridad del objetivo práctico frente al conocimiento
+		\end{frame}
+		\begin{frame}
+			\frametitle{Inteligencia, Emergencia, Autoorganización y Vida Artificial}
+				\begin{block}{La \textit{Inteligencia} a través de la Vida Artificial}
+					\begin{itemize}
+						\item Comportamiento funcional complejo
+						\item resultado de la dinámica global emergente
+						\item interacción de multitud de elementos
+						\item mediante reglas locales simples
+						\item no reducible al comportamiento de las partes
+					\end{itemize}
+				\end{block}
+		\end{frame}
+	\subsection{Símbolos}
+		\begin{frame}
+			\frametitle{Símbolos o Base Física}
+			\begin{block}{La \textit{Hipótesis del Sistema de Símbolos}}
+				\begin{itemize}
+					\item Los sensores suministran símbolos.
+					\item Por ello el sistema de razonamiento puede separarse del sensomotor.
+				\end{itemize}
+			\end{block}
+			\begin{block}{La \textit{Hipótesis de la Base Física}}
+				\begin{itemize}
+					\item Los sistemas deben usar representaciones basadas en el mundo físico: \textit{``Es mejor usar el mundo como su propio modelo"}~\citep{bro:Repr} % It turns out to be better to use the world as its own model
+					\item La Inteligencia es inseparable del cuerpo y del entorno.
+				\end{itemize}
+			\end{block}
+		\end{frame}
+	\subsection{Conexionismo}
+		\begin{frame}
+			\frametitle{Conexionismo, PDP}
+			Procesamiento Distribuido Paralelo: procesamiento subsimbólico de la información por un conjunto de elementos simples con reglas locales, de los que emerge una dinámica global.
+
+			Inspirados en:
+				\begin{description}[Neurociencias:]
+					\item [Física:] Enfriamiento Estadístico (\textit{Simulated Annealing})
+					\item [Topología:] SOM o Redes de Kohonen
+					\item [Probabilidad:] Redes Bayesianas
+					\item [Neurociencias:] Redes Neuronales
+				\end{description}
+		\end{frame}
+
+\section{Robótica Evolutiva}
+	\subsection{Objetivos y situación actual}
+		\begin{frame}
+			\frametitle{Objetivos de la Robótica Evolutiva}
+			La Robótica Evolutiva
+			\begin{itemize}
+				\item estudia mecanismos cognitivos creando modelos
+				\item crea sistemas con comportamientos funcionalmente más complejos
+				\item encuentra mejores soluciones para entornos no estructurados mediante
+				\begin{itemize}
+					\item sistemas subsimbólicos
+					\item diseño automático
+				\end{itemize}
+			\end{itemize}
+		\end{frame}
+	\subsection{Líneas de trabajo}
+		\begin{frame}
+			\frametitle{Líneas de trabajo en la Robótica Evolutiva}
+			\begin{itemize}
+				\item Estudio de los procesos cognitivos~\citep*{har:dip:woo:quin:tuc}.
+				\begin{itemize}
+					\item Validación de teorías neurocientíficas y biológicas, como la \textit{Fonotaxia del grillo}~\citep*{Webb,lun:web:hal}.
+					\item Estudio procesos cognitivos con objetivos técnicos~\citep{suzuki08, suzukiT}.
+				\end{itemize}
+				\item Estudio de los modelos como sistemas dinámicos~\citep{Beer92b}.
+			\end{itemize}
+		\end{frame}
+	\subsection{Simulaciones e implementaciones}
+		\begin{frame}
+			\frametitle{Simulaciones e implementaciones en robots físicos}
+			Se han definido dos líneas en cuanto a las simulaciones:
+			\begin{itemize}
+				\item es inútil trabajar sólo en simulación porque no se asegura su funcionamiento en la realidad~\citep{flo:mon:96}.
+				\item es posible definir una \textit{simulación mínima} que permite o facilita saltar de simulación a realidad~\citep{jak}.
+			\end{itemize}
+		\end{frame}
+	\subsection{Límites y problemas}
+		\begin{frame}
+			\frametitle{Límites y problemas de la Robótica Evolutiva}
+				Dos problemas principales:
+				\begin{description}[Morfogénesis:]
+					\item [Morfogénesis:] desarrollo de una forma a partir de la información genética
+					\item [\textit{Escalabilidad}:] aplicación del mecanismo a problemas cuantitativamente más complejos
+				\end{description}
+		\end{frame}
+
+\section[Objetivos]{Objetivos del trabajo}
+		\begin{frame}
+			\frametitle{Objetivo principal del trabajo}
+			\begin{block}{Objetivo principal del trabajo}
+				\begin{itemize}
+					\item Obtención de un robot en simulación
+					\item navegación en entornos no estructurados
+					\item diferenciar señales variables en el tiempo
+					\item sonidos como puntos de referencia
+					\item sin mapas ni otros sistemas de localización
+				\end{itemize}
+			\end{block}
+
+			\begin{block}{Navegación}
+				Navegación es el movimiento dirigido de un agente, generado analizando aquella información sensorial que el agente necesita para realizar sus funciones vitales
+			\end{block}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Navegación: corporeidad y simetría axial}
+			Vehículos de Braitenberg~\citep{bra}.
+				\begin{center}
+					\includegraphics[width=5cm]{braitenberg2}
+				\end{center}
+		\end{frame}
+	\subsection{Percepción}
+		\begin{frame}
+			\frametitle{Navegación: Percepción y Redes Neuronales}
+			Redes Neuronales:
+				\begin{itemize}
+					\item sistemas conexionistas
+					\item generalización y parametrización
+					\item inspiración biológica
+					\item reconocimiento de patrones o extracción de características (navegación)
+					\item paralelamente, adquisición de información y control de la parte motora
+				\end{itemize}
+
+			Las Redes Neuronales de Pulsos
+				\begin{itemize}
+					\item tienen más potencia de procesamiento temporal de la entrada~\citep{maa,izhi:polychr}
+					\item más resistentes al ruido (activación digital)~\citep{maa}
+% 					\item dimensionalidad ``infinita'' y patrones de disparo estables~\citep{izhi:polychr}
+				\end{itemize}
+		\end{frame}
+	\subsection{Problema planteado}
+		\begin{frame}
+			\frametitle{Problema implementado en la aplicación {\scshape Topos}}
+			Simulación de un robot que:
+				\begin{itemize}
+					\item navega usando puntos de referencia basados en sonido real
+					\item distingue dos señales compuestas que varían en el tiempo (sonido real)
+					\item recibe una señal que varía independientemente de su movimiento
+					\item elige una de las dos señales acercándose a ella en un esquema \textit{caja de Skinner}
+					\item percibe y actúa a través de una Red Neuronal de Pulsos y sensores evolucionados
+					\item se diseña con un enfoque fuertemente bioinspirado
+				\end{itemize}
+		\end{frame}
+
+\section{Diseño de {\scshape Topos}}
+	\subsection{Descripción global}
+		\begin{frame}
+			\frametitle{Diseño de {\scshape Topos}}
+			Simulación de un robot de dos ruedas.
+
+			Superficie rectangular con dos fuentes de sonido.
+
+			Red Neuronal de Pulsos que conecta sensores con motores.
+
+			Se evoluciona una población de robots con un Algoritmo Genético elitista.
+
+			Selección: acercarse a la fuente de sonido determinada al principio de las pruebas (caja de Skinner).
+		\end{frame}
+		\begin{frame}
+			\frametitle{Proceso auditivo}
+				\includegraphics[width=9cm]{hearing}
+				\label{fig-hearing}
+		\end{frame}
+	\subsection{Faros}
+		\begin{frame}
+			\frametitle{Fuentes de sonido o \textit{faros}}
+			Los faros son fuentes de sonido estéreo.
+
+				\href{run:f6-pioAB.wav}{
+					\includegraphics[width=9cm]{pioYZSpcm}
+					\label{fig-sonidoPCM}
+% 					\caption{\\Forma de la onda de un sonido estéreo}
+			}
+		\end{frame}
+
+	\subsection{Topos}
+		\begin{frame}
+			\frametitle{Individuos o \textit{topos}}
+			Los topos son simétricos por diseño. Se componen de:
+			\begin{itemize}
+				\item dos oídos con oído externo e interno (cóclea)
+				\item dos subredes neuronales interconectadas
+				\item información genética
+				\item posición
+			\end{itemize}
+			\begin{columns}[c]
+				\begin{column}[t]{4.5cm}
+					\begin{figure}
+						\includegraphics[width=3.5cm]{hearing}
+						\label{fig-hearing2}
+					\end{figure}
+				\end{column}
+				\begin{column}[t]{4.5cm}
+					\begin{figure}
+						\includegraphics[width=3.5cm]{topo-autopsia}
+						\label{fig-topo-autopsia}
+					\end{figure}
+				\end{column}
+			\end{columns}
+			~\\~ % para que los gráficos se desplacen hacia arriba
+		\end{frame}
+	\subsection{Oídos}
+		\begin{frame}
+		\frametitle{Oído interno (Transformada de Fourier) y activación de neuronas sensoras}
+			Los sensores simulan los campos receptivos de nuestros oídos.
+			\begin{columns}[c]
+				\begin{column}[t]{4.5cm}
+					\begin{figure}
+						\includegraphics[width=4.0cm]{piar}
+						\label{fig-piar}
+					\end{figure}
+				\end{column}
+				\begin{column}[t]{4.5cm}
+					\begin{figure}
+						\includegraphics[width=4.5cm]{FC}
+						\label{fig-FC}
+					\end{figure}
+				\end{column}
+			\end{columns}
+			A la activación del sensor se le resta un número aleatorio (ruido de la señal).
+		\end{frame}
+	\subsection{Neuronas}
+		\begin{frame}
+		\frametitle{Funcionamiento de las neuronas}
+% 			\begin{columns}%[c]
+% 				\begin{column}[t]{4.5cm}
+					\begin{figure}
+						\includegraphics[width=4.5cm]{pulso}
+						\label{fig-pulso}
+					\end{figure}
+% 				\end{column}
+% 				\begin{column}[t]{4.5cm}
+					\begin{align*}
+					s_{i}^{t-1} &= \sum\limits_{j=1}^{N}w_{ij} a_{j}^{t-1} \\
+					a_{i}^{t} &= f(s_{i}^{t-1} ) \\
+					f(x) &= 	\begin{cases}
+								x,  &\text{si}~x < \theta_{i} \\
+								e^{-\alpha p} \cdot cos(\beta p),  &\text{si}~x \ge \theta_{i}~\text{p pasos de actualización}
+							\end{cases} \\
+ 					\end{align*}
+
+% 				\end{column}
+% 			\end{columns}
+		\end{frame}
+	\subsection{Algoritmo Genético}
+		\begin{frame}
+			\frametitle{Algoritmo Genético}
+			La representación del individuo en el genotipo es directa.
+
+			Los parámetros del robot se codifican en números reales y enteros, y booleanos codificados como enteros.
+
+			La evolución es elitista:
+			\begin{itemize}
+				\item el 25\% mejor: pasa a la siguiente generación.
+				\item el 25\% peor: se desecha.
+				\item el 75\% mejor (élite incluida): cruce y creación de la siguiente generación.
+			\end{itemize}
+			Mutación: 10\% de las copias de datos (gaussiana de media 1).
+		\end{frame}
+	\subsection{Fitness}
+		\begin{frame}
+			\frametitle{El problema y la función de adecuación o \textit{fitness function}}
+			El problema se considera complejo pero la función de adecuación es sencilla:
+			\begin{itemize}
+				\item resta un valor proporcional al cuadrado de la distancia mínima al faro correcto
+				\item suma un valor proporcional al cuadrado de la distancia mínima al faro incorrecto
+				\item se suma (resta) una bonificación si se ha acercado a una distancia del faro.
+				\item el valor final es la media de cinco pruebas, sustituyendo los negativos por cero.
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Ejemplo de movimiento de un robot}
+				\href{run:video.avi}{
+					\includegraphics[width=9cm]{trajectories}
+					\label{fig-trajectories}
+				}
+		\end{frame}
+
+\section{Resultados}
+	\subsection{Evaluación absoluta}
+		\begin{frame}
+			\frametitle{Resultados de los experimentos realizados con {\scshape Topos}}
+				Evaluación: acertar, fallar o no alcanzar una fuente de sonido.
+
+				Valores que indican la capacidad de hacer la tarea en porcentaje de efectividad.
+
+				\begin{description}[eficacia absoluta:]
+					\item [eficacia absoluta:] efa = aciertos/pruebas
+					\item [eficacia relativa:] efr = aciertos/(aciertos+fallos)
+				\end{description}
+				Estas cantidades indican de forma absoluta la capacidad de solucionar un problema, frente a una \textit{fitness} relativa difícil de interpretar.
+		\end{frame}
+	\subsection{Corrección}
+		\begin{frame}
+			\frametitle{Comprobación del sistema sin sonido y con un sonido en un faro}
+				\includegraphics[width=\textwidth]{correct1}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Comprobación del sistema con dos sonidos iguales en los faros}
+				\includegraphics[width=\textwidth]{correct2}
+		\end{frame}
+	\subsection{Señales complejas}
+		\begin{frame}
+			\frametitle{Reconocimiento de una determinada intensidad de señal(ruido rosa contra blanco)}
+				\includegraphics[width=6cm]{PW}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Reconocimiento de una secuencia temporal}
+			\begin{columns}[c]
+				\begin{column}[t]{5cm}
+					\begin{figure}
+						\includegraphics[width=5cm]{pio}
+						\label{fig-pio}
+					\end{figure}
+				\end{column}
+				\begin{column}[t]{5cm}
+					\begin{figure}
+						\includegraphics[width=5cm]{pioAB}
+						\label{fig-pioAB}
+					\end{figure}
+				\end{column}
+			\end{columns}
+		\end{frame}
+	\subsection{Ruido}
+		\begin{frame}
+			\frametitle{Robustez frente al ruido (batería y rock)}
+			\begin{columns}[c]
+				\begin{column}[t]{5cm}
+					\begin{figure}
+						\includegraphics[width=5cm]{pio}
+						\label{fig-pio2}
+					\end{figure}
+				\end{column}
+				\begin{column}[t]{5cm}
+					\begin{figure}
+						\includegraphics[width=5cm]{bgnoises}
+						\label{fig-bgnoises}
+					\end{figure}
+				\end{column}
+			\end{columns}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Comportamiento de la población sin y con ruido}
+				\includegraphics[width=4.9cm]{ga}
+				\label{fig-ga}
+				\includegraphics[width=4.9cm]{ganoises}
+				\label{fig-ganoises}
+% 			\begin{columns}[c]
+% 				\begin{column}[t]{4.5cm}
+% 					\begin{figure}
+% 						\includegraphics[width=4.5cm]{ga}
+% 						\label{fig-ga}
+% 					\end{figure}
+% 				\end{column}
+% 				\begin{column}[t]{4.5cm}
+% 					\begin{figure}
+% 						\includegraphics[width=4.5cm]{ganoises}
+% 						\label{fig-ganoises}
+% 					\end{figure}
+% 				\end{column}
+% 			\end{columns}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Con dos y cuatro fuentes de ruido blanco}
+				\includegraphics[width=4.9cm]{wwnoises}
+				\label{fig-wwnoises}
+				\includegraphics[width=4.9cm]{wwwwnoises}
+				\label{fig-wwwwnoises}
+		\end{frame}
+	\subsection{Silencio}
+		\begin{frame}
+			\frametitle{Sonidos con partes de silencio}
+					\includegraphics[width=4.9cm]{pioYZSpcm}
+% 						\vskip0.3cm
+					\includegraphics[width=4.9cm]{pioYZSfft}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Resultados con sonidos con partes de silencio}
+					\includegraphics[width=4.9cm]{pioYZS-433}
+% 						\vskip0.3cm
+					\includegraphics[width=4.9cm]{pioYZSga}
+		\end{frame}
+	\subsection{PCM}
+		\begin{frame}
+			\frametitle{Sonidos con formato PCM}
+					\includegraphics[width=4.9cm]{PCM-hist}
+% 						\vskip0.3cm
+					\includegraphics[width=4.9cm]{PCM-ga}
+		\end{frame}
+
+\section{Análisis de un individuo}
+	\subsection{Límites}
+		\begin{frame}
+			\frametitle{Dificultades en el análisis de un individuo}
+			Es difícil determinar cuáles son las partes funcionales y qué características son necesarias.
+
+			El método es \textit{anular} partes del individuo y observar si se sigue comportando igual, de forma \textit{degradada} o se han perdido las capacidades.
+		\end{frame}
+
+		\begin{frame}
+			\frametitle{\textit{Poda} de un individuo (experimento con partes de silencio)}
+				\includegraphics[width=4.8cm]{topo-autopsia1}
+% 				\vskip 1.4cm
+				\includegraphics[width=5.4cm]{topo-autopsia2}\\
+% 				Estructura del individuo del análisis, antes y después de la \textit{poda}.
+				Número de neurona (negro). Conexiones y retardos de las conexiones entrantes en naranja (peso positivo) y azul (peso negativo). Los pesos de los sensores son todos positivos (color vino). El retardo de valor 56 es recursivo.
+			\label{fig-autopsia}
+		\end{frame}
+
+		\begin{frame}
+			\frametitle{Sensores}
+% 				\includegraphics[width=4.9cm]{pioYZSfftFiltrado2}
+% 				El espectro de frecuencias de los sonidos usados en este experimento (ver sección~\ref{sec:sonidosdelsilencio}), filtrados tal como lo hacen los sensores (frecuencias alrededor de los 2293~Hz y~1392~Hz), con dos diferentes intensidades de color en la representación de la intensidad con el objetivo de observar por una parte el ruido y por otra la intensidad de la señal que usa el individuo.
+
+				\begin{table} [ht]
+					\includegraphics[width=7.9cm]{pioYZSfftFiltrado}
+ 					\vskip 0.1cm
+					\begin{small}
+						\begin{tabular}{|c|c|c|c|c|c|}\hline
+						Sensores				&
+						FC  					&
+						Umbral 				&
+						Bandas				&
+						Saturación			&
+						Peso				\\ \hline\hline
+
+						0 y 5	& 2292.9 	& 20 	& 5  	& 22 	& 79 	\\
+						1 y 4 	& 1391.7 	& 23 	& 15 	& 269 	& 52 	\\
+% 						2 	& 402.9  	& 0  	& 2 	 	& 105 	& 87 	\\
+% 						3 	& 402.9  	& 0  	& 2 		& 105 	& 87 	\\
+% 						4 	& 1391.7 	& 23 	& 15 	& 269 	& 52 	\\
+% 						5 	& 2292.9 	& 20 	& 5 		& 22 	& 79 	\\
+						\hline
+						\end{tabular}
+					\end{small}
+					\vskip 0.1cm
+					Su separación a cada lado del eje es de 64$^{\circ}$.\\~
+				\label{tabla-sensores}
+			\end{table}
+		\end{frame}
+
+\section{Conclusiones}
+	\subsection{Conclusiones globales}
+		\begin{frame}
+			\frametitle{Resultados: viabilidad de un desarrollo técnico en la Robótica Evolutiva}
+			Se ha construido una simulación en la que se obtiene mediante estrategias evolutivas un robot que:
+				\begin{itemize}
+					\item navega usando puntos de referencia complejos
+					\item distingue y elige una de las dos señales compuestas que varían en el tiempo (sonido real)
+					\item recibe una señal que varía independientemente de su movimiento
+% 					\item  señales acercándose a ella en un esquema \textit{caja de Skinner}
+					\item percibe y actúa a través de una Red Neuronal de Pulsos y sensores evolucionados
+					\item se diseña con un enfoque fuertemente bioinspirado
+				\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Conclusiones}
+			El robot tiene un comportamiento de navegación al diferenciar sonidos variables en el tiempo que usa como puntos de referencia.
+
+			El resultado valida el método como adecuado para obtener robots que desarrollen tareas \textit{complejas} en entornos no estructurados.
+
+			El controlador del robot es mucho más sencillo que lo que haría falta con técnicas de IA clásica.
+		\end{frame}
+		\begin{frame}
+			\frametitle{Dificultades comprobadas en la construcción del sistema}
+			La aplicación tiene un diseño \textit{tradicional} en la Robótica Evolutiva.
+
+			Se ha comprobado que este tipo de diseño dificulta las siguientes tareas:
+				\begin{itemize}
+					\item es difícil conseguir una descripción adecuada de un robot con esta complejidad para su uso evolutivo.
+					\item el robot resultante no es suficientemente flexible para adaptarse a nuevas tareas o planteamientos.
+				\end{itemize}
+			Estas dificultades forman la base del trabajo futuro.
+		\end{frame}
+
+
+	\subsection{Trabajo futuro}
+		\begin{frame}
+			\frametitle{Trabajo futuro}
+				\begin{description}[Morfogénesis:]
+					\item [Morfogénesis:]
+						\begin{itemize}
+							\item expresión no lineal de la información genética
+							\item sensores (exteroceptores y propioceptores) y motores complejos
+							\item topología de la red neuronal más variada
+							\item neuronas más potentes y mecanismos de aprendizaje
+						\end{itemize}
+					\item [\textit{Escalabilidad}:] los entornos complejos y la morfogénesis permitirán tareas complejas y estructuras inalcanzables con diseño a mano.
+				\end{description}
+		\end{frame}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% SE REPITE EL TÍTULO Y EL ÍNDICE
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\author{Pablo González Nalda}
+
+\begin{frame}[plain]
+	\begin{columns}[c]
+		\begin{column}[t]{7cm}
+			\begin{figure}
+				\begin{center}
+					\includegraphics[width=3cm]{logoEHU}
+				\end{center}
+			\end{figure}
+			\titlepage
+		\end{column}
+		\begin{column}[t]{2.5cm} % para centrar la pág de título es como la anchura del usetheme
+			\\
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\author{\scshape Contenidos}
+
+
+\begin{frame}
+	\frametitle{Contenidos de la presentación}
+                        \tableofcontents[
+                                % ...showing the active section in the context of other sections...
+                                sectionstyle=show/show,
+                                % ... while hiding subsections
+                                subsectionstyle=hide/hide/hide
+                        ]
+\end{frame}
+
+
+
+		\begin{frame}[plain]
+			\frametitle{Izhikevich, Hopfield, Paugam-Moisy}
+				\begin{description}[Paugam-Moisy:]
+					\item [Izhikevich:] equilibrio entre plausibilidad biológica de los modelos del tipo Hodgkin-Huxley y eficiencia computacional de los modelos de neuronas integrar-y-disparo~\citep{izhi:polychr}
+					\item [Hopfield:] red asociativa~\citep{hopfield82}
+					\item [Paugam-Moisy:] aprendizaje hebbiano con reglas STDP (\textit{Spike-Timing Dependent Plasticity})~\citep*{paugam2008}
+				\end{description}
+		\end{frame}
+		\begin{frame}[plain]
+			\begin{align}\label{f-izhi}
+				\dot v_{i} &= 0.04v_{i}^2+5v_{i}+140-u_{i}+I
+\\
+				\dot u_{i} &= a(bv_{i}-u_{i})
+\\
+				\text{si}&~ v_{i} \geq 30 mV \begin{cases} v_{i} \leftarrow c \\ u_{i}  \leftarrow  u_{i} + d \end{cases}
+			\end{align}
+
+				\begin{center}
+					\includegraphics[width=5.9cm]{izhik}
+				\end{center}
+		\end{frame}
+
+
+
+
+	\begin{frame}[allowframebreaks]{Bibliografía}
+		\bibliographystyle{tesis}
+		\bibliography{bibliotopos}
+	\end{frame}
+
+
+%
+% \begin{frame}
+% \end{frame}
+%
+% 		\begin{frame}[plain]
+% 			\frametitle{¿Por qué en simulación?}
+% 			Porque:
+% 				\begin{itemize}
+% 					\item el resultado en un robot real no tendría aplicación directa ni aporta más conclusiones al trabajo
+% 					\item en el desarrollo de prototipos y la búsqueda de técnicas adecuadas en un trabajo exploratorio no es necesario el formato final
+% 					\item el trabajo adicional requerido para obtener un robot real se aplica al estudio de otras posibilidades
+% 				\end{itemize}
+% 		\end{frame}
+% 		\begin{frame}[plain]
+% 			\frametitle{Dificultades ya previstas al plantear el problema}
+% 			Se conocen de antemano las siguientes dificultades habituales en la Robótica Evolutiva:
+% 				\begin{itemize}
+% 					\item es difícil conseguir una descripción adecuada de un robot con esta complejidad para su uso evolutivo.
+% 					\item el diseño resultante puede no ser adecuado para adaptarse a nuevas tareas o planteamientos.
+% 				\end{itemize}
+% 		\end{frame}
+% % 	\subsection{Incremental}
+% 		\begin{frame}[plain]
+% 			\frametitle{El problema del planteamiento incremental}
+% 				La representación directa dificulta el cambio de tarea para una población.
+%
+% 				La evolución desde una población aleatoria da mejor resultado que desde una que resuelve un problema distinto.
+%
+% 				Una morfogénesis no lineal (representación indirecta) permitiría un cambio suave entre tareas.
+% 		\end{frame}
+
+
+\end{document}

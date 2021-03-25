@@ -1,0 +1,40 @@
+====== Por qué se ha decidido no usar el paquete Babel en la plantilla LaTeX ======
+
+En principio la localización española puede ayudar a crear un documento LaTeX en español. Con ese paquete, los capítulos se llamarán //Capítulo// en vez de //Chapter//, el separador decimal en números no será el punto, sino la coma, etc. (leer más [[http://www.texytipografia.com/spanish.html|aquí]]).
+
+En la práctica, no es tan sencillo. Enumero algunos problemas:
+
+  * Las tildes y las eñes no requieren barras, de forma que podemos escribir "pescozón" como:
+
+<code latex>pescoz'on</code>
+
+en vez de:
+
+<code latex>pescoz\'on</code>
+
+Esto puede parecer una loable economía de medios, pero rompe con el estándar de LaTeX, y translada a la sintaxis un problema de ergonomía. ¿Qué ocurre cuando queremos escribir "m n", con un espacio **protegido** en medio (que no se separen nunca la m y la n al acabar una línea)? En LaTeX, el espacio protegido se escribe con una tilde (~):
+
+<code latex>
+m~n
+</code>
+
+¡Pero ojo! Con el paquete español para LaTeX, lo de arriba produce "mñ", //gracias// a la "economía de medios". Observar la diferencia en LaTeX estándar:
+
+<code latex>
+% m n:
+m~n
+% mñ
+m\~n
+</code>
+
+  * Las //Table//s se traducen como //Cuadro//s. ¡Cuán ridículo es esto! Podemos redefinir el nombre de las tablas como //Tabla//:
+
+<code latex>\renewcommand\tablename{Tabla}</code>
+
+pero... el usar el paquete Babel tenía como objeto **no** tener que hacer esto.
+
+  * ¿Realmente deseas sustituir los puntos por comas como separadores decimales? ¿Realmente deseas usar funciones (como "lím" o "máx") con tilde? Quizá fuera mejor usar convenciones matemáticas que son un estándar //de facto// en todo el mundo no-hispanohablante.
+
+Si estas razones no te convencen, siempre eres libre de descomentar (bajo tu propia responsabilidad) la línea correspondiente en ''Config/pfc_opciones.tex''.
+
+Por todo lo anterior, se ha preferido incluir los cambios oportunos en los ficheros de configuración específicos, proporcionados con la plantilla. Es una solución //ad hoc//, pero creemos que razonable.

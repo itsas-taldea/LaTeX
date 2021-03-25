@@ -1,0 +1,109 @@
+\section{Adaptación de ficheros a DokuWiki}
+\label{sanity}
+
+\subsection{Introducción}
+
+En la sección \ref{Samba}. \nameref{Samba} de este documento se explicó como compartir en red algunas carpetas del servidor. Concretamente se establecieron como carpetas compartidas las que guardan las páginas y los archivos subidos al Dokuwiki, \texttt{/data/pages} y \texttt{/data/media} respectivamente.
+
+Sin embargo, para evitar problemas de acceso a las páginas y los archivos creados de forma manual, éstos deben pertenecer al mismo usuario que si hubieran sido creados a través del DokuWiki, es decir, \textit{www-data}.
+
+Adicionalmente, para que los archivos contenidos en la carpeta \texttt{/media} sean enlazables desde el DokuWiki, sus nombres de archivo no deben contener caracteres no soportados, como espacios en blanco o letras mayúsculas.
+
+Para cumplir con estos requerimientos se automatizará la ejecución de un script que cambiará los nombres de archivo por otros más convenientes y cambiará el usuario al que pertenecen, siempre que esto sea necesario.
+
+\subsection{Script para modificar nombres de ficheros}
+
+Para modificar los nombres de los ficheros se utilizará el script \textit{sanity.pl}, escrito en Perl por Andreas Gohr, desarrollador principal de DokuWiki, y distribuido bajo una licencia libre.
+
+El script es recursivo, y modifica los nombres de los archivos situados en la carpeta indicada convirtiendo todos los caracteres a minúsculas, sustituyendo los espacios en blanco por barras bajas, eliminando caracteres no permitidos y evitando que los guiones estén rodeados de rayas bajas. De esta forma DokuWiki no tendrá problemas para leer los ficheros subidos.
+
+Se puede consultar el código del script en la sección \ref{script-sanity}. \nameref{script-sanity}.
+
+\subsection{Script de shell}
+
+Para posteriormente poder automatizar el proceso de ejecución del script de Perl \textit{sanity.pl} y la modificación del dueño de los archivos se creará el script de shell \texttt{sanity.sh}.
+
+\begin{listing}[style=consola, numbers=none]
+ # nano /usr/bin/sanity.sh
+\end{listing}
+
+\begin{listing}
+#!/bin/bash
+cd /var/www/dokuwiki/data 
+chown -R www-data media
+chown -R www-data pages
+perl sanity.pl -l media
+\end{listing}
+
+Este script considera que \textit{sanity.pl} se encuentra en la carpeta en que se guardan los datos del DokuWiki, es decir \texttt{/var/www/dokuwiki/data}.
+
+Antes de poder ejecutar el script habrá que hacerlo ejecutable.
+
+\begin{listing}[style=consola, numbers=none]
+ # chmod +x /usr/bin/sanity.sh
+\end{listing}
+
+Una vez hecho esto ya se podrá ejecutar el script escribiendo lo siguiente en la consola:
+
+\begin{listing}[style=consola, numbers=none]
+# sanity.sh
+\end{listing}
+
+El resultado de la ejecución de este script cuando hay archivos nuevos pendientes de modificar el nombre sería similar a lo siguiente:
+
+\begin{SaveVerbatim}{codigo}
+Renaming '5- Manual de usuario.pdf' to '5-manual_de_usuario.pdf'        OKAY
+Renaming '1- Memoria.pdf' to '1-memoria.pdf'    OKAY
+Renaming '2- Presupuesto.pdf' to '2-presupuesto.pdf'    OKAY
+Renaming 'Jorge Cuervo Ortega' to 'jorge_cuervo_ortega' OKAY
+Renaming 'FA_213_dDa.txt' to 'fa_213_dda.txt'   OKAY
+Renaming 'FV_171_dDa.txt' to 'fv_171_dda.txt'   OKAY
+Renaming 'FV_236_dDa.txt' to 'fv_236_dda.txt'   OKAY
+Renaming 'FV_233_dDa.txt' to 'fv_233_dda.txt'   OKAY
+Renaming 'filtrado_ECG.m' to 'filtrado_ecg.m'   OKAY
+Renaming 'FV_241_2_dDa.txt' to 'fv_241_2_dda.txt'       OKAY
+Renaming 'FV_246_dDa.txt' to 'fv_246_dda.txt'   OKAY
+Renaming 'FV_234_dDa.txt' to 'fv_234_dda.txt'   OKAY
+\end{SaveVerbatim}
+\respuesta{codigo}
+
+\subsection{Automatización del proceso}
+
+Para que el script descrito en la sección anterior se ejecute de forma automática habrá que crear un archivo en \texttt{/etc/cron.d}, llamado por ejemplo \texttt{sanity}.
+
+A continuación se muestra un ejemplo del contenido de este fichero para que el script se ejecute cada dos minutos de ocho de la mañana a diez de la noche y de lunes a viernes.
+
+\begin{listing}[style=consola, numbers=none]
+# nano /etc/cron.d/sanity
+\end{listing}
+
+\begin{listing}
+#min hora dia mes dia_semana usuario comando
+*/2 08-22 * * 1-5 root /usr/bin/sanity.sh
+\end{listing}
+
+\newpage
+\subsection{Resumen}
+
+\begin{enumerate}
+ \item  Creación del script \texttt{sanity.pl} (ver código en \ref{script-sanity}. \nameref{script-sanity})
+\begin{listing}[style=consola, numbers=none]
+# nano /var/www/dokuwiki/data/sanity.pl
+\end{listing}
+
+\begin{listing}[style=consola, numbers=none]
+ # chmod a+x /usr/bin/sanity.sh
+\end{listing}
+
+\item Automatización de la ejecución del script
+
+\begin{listing}[style=consola, numbers=none]
+ # nano /etc/cron.d/sanity
+\end{listing}
+
+\begin{listing}[style=archivo, numbers=none]
+ #min hora dia mes dia_semana usuario comando
+*/10 08-22 * * 1-5 root /usr/bin/sanity.sh
+\end{listing}
+
+\end{enumerate}

@@ -1,0 +1,94 @@
+====== Razones para usar LaTeX en lugar de procesadores de texto ======
+
+
+
+===== El contenido y el formato están separados =====
+
+Con procesadores de texto (como //MS Word// u //OpenOffice.org//), estamos acostumbrados a ver en tiempo real en la pantalla el texto que escribimos, mientras escribimos. No solo eso, sino que lo vemos **tal y como** va a verse en la versión "definitiva" (para imprimir).
+
+Esto puede ser un handicap, porque empuja al autor a prestar atención a **cómo** quedará el texto, en vez de dedicarse en exclusiva al contenido (que posteriormente se formateará).
+
+Tomemos un ejemplo trivial. Queremos escribir "Hola mundo" dentro de un párrafo. Supongamos que queremos que "Hola mundo" esté enfatizado respecto al resto del texto. Normalmente esto lo logramos poniéndolo en cursiva:
+
+bla bla bla //hola mundo// bla bla
+
+¿Pero, qué pasa si queremos que el párrafo esté en cursiva (por ejemplo, porque es una cita)? Ahora tenemos que poner todo en cursiva, **menos** "hola mundo":
+
+//bla bla bla// hola mundo //bla bla//
+
+Si utilizamos LaTeX, el énfasis en "hola mundo" no lo transmitimos al "editor" mediante formateo (con cursiva), sino señalándolo como "enfatizado":
+
+<code latex>
+bla bla bla \emph{hola mundo} bla bla bla
+</code>
+
+Si después ponemos todo el texto en cursiva, "hola mundo" pasará **automáticamente** a letra normal (lo opuesto de lo que lo rodea, para seguir estando enfatizado):
+
+<code latex>
+\textit{bla bla bla \emph{hola mundo} bla bla bla}
+</code>
+
+Esto es así, porque nosotros transmitimos al editor (el compilador de LaTeX) nuestras intenciones lógicas y estructurales, no mera apariencia estética. Similarmente, cuando comenzamos un capítulo, escribimos:
+
+<code latex>
+\chapter{Hola mundo}
+</code>
+
+y esto hace que el compilador trate a "Hola mundo" como un título: le dará el formateo que deseemos para los títulos, lo pondrá en el Índice de Materias (ToC), le dará un número consecutivo dentro de la categoría de títulos... No lo tratará meramente como la cadena de caracteres "Hola mundo", que casualmente están escritos en negrita y con un tamaño de letra más grande.
+
+
+
+===== El compilador se ocupa del formateo =====
+
+Como el formateo del texto está separado de su concepción, no necesitamos preocuparnos de detalles tediosos pero imprescindibles, como dónde colocar una tabla o figura, o "estirar" o "encoger" párrafos para evitar poner la última línea de cierto párrafo en la siguiente página.
+
+Por ejemplo, si queremos introducir una figura, podemos escribir:
+
+<code latex>
+\begin{figure}[hbt]
+  La-figura-va-aquí
+\end{figure}
+</code>
+
+El **hbt** significa que ponga la figura exáctamente donde la hemos colocado (**h**ere) si puede, si no cerca del pié (**b**ottom) de la página donde le "toque" salir, y si no al principio (**t**op) de la primera página que pueda, a partir de ese punto. LaTeX organizará el texto de alrededor (poniendo más antes o después de insertar la figura), para que la figura aparezca donde le hemos dicho, siempre cumpliendo requisitos de no partir la figura, de no insertarla antes de que sea referenciada en el texto y cuanto antes mejor después de la zona donde la hemos puesto nosotros.
+
+
+===== El autor solo se debe ocupar de la estructura lógica =====
+
+Cuando un autor hace una referencia cruzada a un capítulo, tabla o figura, o una cita a la bibliografía, lo que desea es referirse al **objeto**, y para ello lo natural es referirse por un nombre que le asigne el autor, y no por un número.
+
+Por ejemplo, para etiquetar un capítulo:
+
+<code latex>
+\chapter{Hola mundo\label{etiqueta}}
+</code>
+
+Para referirnos a él:
+
+<code latex>
+Como dijimos en el capítulo \ref{etiqueta}...
+</code>
+Cuando compilemos el texto para producir el documento formateado, el compilador se cerciorará de asignar valores numéricos consecutivos a tablas, figuras, citas bibliográficas, capítulos y cualquier otro material etiquetado (obviamente, con listas de números diferenciadas para cada categoría), y a sustituir en el texto cada mención a una etiqueta por el valor numérico asignado.
+
+Esta característica hace que nos despreocupemos de numerar manualmente las tablas y demás elementos, y que no debamos dedicarnos a la ardua (y propicia a errores) tarea de renumerar todos los elementos cada vez que los reordenemos o eliminemos o añadamos alguno.
+
+Si bien es cierto que los procesadores de texto moderno cuentan con la habilidad para hacer esto, en LaTeX es una cualidad consubstancial a la edición, y no una oscura característica que apenas nadie usa. Puede argumentarse que eso es culpa de la ignorancia del usuario, y no del programa, pero también es cierto que los procesadores de texto no promueven el uso de etiquetas para referencias cruzadas.
+
+
+
+
+
+===== Portabilidad y compatibilidad absoluta =====
+
+El texto fuente de un documento escrito en LaTeX es puro ASCII, con lo cual puede abrirse y modificarse con **cualquier** editor de texto (ojo: "editor", no "procesador"). Esto hace que su portabilidad sea total. 
+
+Además, LaTeX está basado en estándares fuertes, que llevan más de 20 años en vigor. Los ficheros de LaTeX escritos hace 20 años siguen pudiendo compilarse sin apenas cambios hoy día, produciendo documentos idénticos en aspecto al resultado que deseaba el autor original. Es virtualmente imposible que un fichero LaTeX actual quede obsoleto en un futuro previsible, y aunque la sintaxis cambiara en el futuro, sería trivial crear traductores para "actualizar" los ficheros LaTeX con sintaxis "antigua".
+
+Por contraste, los ficheros generados por procesadores de texto son en general binarios, y pueden dar problemas al ser abiertos, por ejemplo, en ordenadores con una arquitectura de hardware diferente a la del ordenador original que las creó.
+
+Además el formato puede variar entre versiones del software usado para editarlos, generando problemas de compatibilidad. Difícilmente un documento Word de hace varios años se abrirá correctamente con el Word Vista, por poner un ejemplo.
+
+===== Enlaces externos =====
+
+  * [[http://www.ecn.wfu.edu/~cottrell/wp.html|Word Processors: Stupid and Inefficient]] (en inglés)
+  * [[http://es.wikipedia.org/wiki/LaTeX| LaTeX en la Wikipedia]] (incluye enlaces a [[http://es.wikipedia.org/wiki/LaTeX#Enlaces_externos| buenos manuales]])

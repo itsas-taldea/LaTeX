@@ -1,0 +1,197 @@
+%
+% Paquetes que pueden serte de utilidad (rec = recomendado, opc = opcional)
+%
+\usepackage{fancyhdr}          % (rec)  permite cambiar varios par�metros de las cabeceras y pi�s de p�gina
+% \usepackage{fancyvrb}		% (rec) permite cambiar parámetros del texto
+% literal (entorno verbatim)
+\usepackage{courier}           % (opc)  usa esta fuente por defecto
+%\usepackage{serif}
+\usepackage[spanish]{babel}   % (rec)  da soporte para castellano a LaTeX
+\usepackage[utf8]{inputenc}    % (rec) soporte para tildes
+%\usepackage{setspace}          % (opc)  permite cambiar el espaciado entre l�neas
+%\usepackage{longtable}         % (opc)  permite que las tablas ocupen varias p�ginas
+%\usepackage{lscape}            % (opc)  permite el uso del comando \landscape, para poner algo apaisado
+%\usepackage{color}             % (opc)  varios comandos relativos al color (como \color)
+\usepackage{colortbl}           % (opc) permite usar color en las tablas
+% \usepackage{rotating}          % (opc)  permite rotar PSs y EPSs
+% \usepackage{textcomp}          % (opc)  permite incluir el s�mbolo del euro,
+% con \texteuro
+\usepackage{gensymb} 		% para meter el s\'imbolo del ohmio
+%\usepackage{mathabx}		% para meter el simbolo mayor menor
+%\usepackage{minitoc}           % (opc)  permite incluir ToCs (�ndice de materias) para cada cap�tulo
+%\usepackage{epsf}              % (opc)  permite ciertas manipulaciones a EPSs
+\usepackage[absolute]{textpos} % (rec)  permite posicionado arbitrario de texto (necesario para la portada)
+%\usepackage{srcltx}            % (opc)  permite pasar del .dvi al .tex
+% \usepackage{marvosym}
+\usepackage[breaklinks=true]{hyperref} % (opc) hace que las referencias cruzadas se conviertan en enlaces
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={MASER},    % title
+    pdfauthor={Digna Gonz\'alez, Ivan Iglesisas},     % author
+    pdfsubject={MASER},   % subject of the document
+%     pdfcreator={Creator},   % creator of the document
+%     pdfproducer={Producer}, % producer of the document
+%     pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+
+\usepackage{titleref}           % (opc) permite hacer referencia a otra sección
+% mostrando su título
+\usepackage{graphicx}
+% \usepackage{multirow}
+% \usepackage{setspace}
+\usepackage{url}     % Enlaces web
+% \usepackage{tabularx} %Ajuste automático del ancho de columnas
+% \usepackage{longtable} %Tablas de más de una página, por ejemplo para los
+% acrónimos
+% \usepackage{listings} %Mostrar código en el texto, por ejemplo comandos de
+% consola
+% \usepackage{cmap}   %Hacer que el pdf sea searchable
+
+% \definecolor{gray97}{gray}{.97}
+% \definecolor{gray75}{gray}{.75}
+% \definecolor{gray45}{gray}{.45}
+% \definecolor{BitterSweet}{cmyk}{0,0.83,1,0.70}
+% \definecolor{BlueViolet}{cmyk}{0.86,0.91,0,0.04}
+%  
+% \lstset{ frame=Ltb,
+%      framerule=0pt,
+%      aboveskip=0.5cm,
+%      framextopmargin=3pt,
+%      framexbottommargin=3pt,
+%      framexleftmargin=0.4cm,
+%      framesep=0pt,
+%      rulesep=.4pt,
+%      backgroundcolor=\color{gray97},
+%      rulesepcolor=\color{black},
+% 	inputencoding=utf8,
+% 	extendedchars=\true,
+%      %
+%      stringstyle=\ttfamily,
+%      showstringspaces = false,
+%      basicstyle=\small\ttfamily,
+%      commentstyle=\color{gray45},
+%      keywordstyle=\bfseries,
+%      %
+%      numbers=left,
+%      numbersep=15pt,
+%      numberstyle=\tiny,
+%      numberfirstline = false,
+%      breaklines=true,
+%    }
+%  
+% % minimizar fragmentado de listados
+% \lstnewenvironment{listing}[1][]
+%    {\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+%  
+% \lstdefinestyle{consola}
+%    {basicstyle=\scriptsize\bf\ttfamily,
+%     backgroundcolor=\color{gray75},
+%    }
+% 
+% \lstdefinestyle{archivo}
+%    {basicstyle=\scriptsize\ttfamily,
+%     backgroundcolor=\color{gray97},
+%    }
+
+%\usepackage{urlbst} %Soporte para url en bibtex
+%
+% Settings para los m�rgenes. Descomenta y modifica si sabes lo que haces. N�tese
+% que a los valores dados se les a�ade una pulgada extra. Los valores dados son los
+% predeterminados para papel A4 y el estilo itsas_pfc.cls.
+%
+%\setlength{\oddsidemargin}{10pt}     % m�rgen izquierdo para p�ginas impares (izquierda)
+%\setlength{\evensidemargin}{52pt}    % m�rgen izquierdo para p�ginas pares (derecha)
+%\setlength{\textwidth}{390pt}        % anchura del cuerpo de texto
+
+%
+% Recomendado para mejorar la colocaci�n autom�tica de las figuras.
+% (tomado de http://dcwww.camp.dtu.dk/~schiotz/comp/LatexTips/LatexTips.html#captfont)
+%
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+
+%
+% Espacio entre el borde superior de la p�gina y donde comienza el texto (ah� van las
+% cabeceras). LaTeX se queja si usamos el paquete fanchyhdr y headheight es menor de 15pt
+%
+\headheight 16pt
+
+%
+% Para el paquete textpos (usado para la portada)
+%
+\setlength{\TPHorizModule}{\paperwidth}
+\setlength{\TPVertModule}{\paperheight}
+\newcommand{\tb}[4]{\begin{textblock}{#1}[0.5,0.5](#2,#3)\begin{center}#4\end{center}\end{textblock}}
+% 
+%
+% \newcommand{\respuesta}[1]{\setlength{\parindent}{0pt}\colorbox[gray]{0.87}{
+% \scriptsize\texttt{\BUseVerbatim{#1}}}\setlength{\parindent}{1cm}}
+% 
+% \newcommand{\enunciado}[1]{\textit{\textbf{#1}}}
+
+
+
+%
+% Aqu� puedes definir tus comandos.
+% 
+% \newcommand{cmd}[args]{def}
+%
+% cmd  = el comando a definir (p.e. \cadena)
+% args = el n�mero de argumentos
+% def  = la definici�n, sustituyendo #1, #2... por el primer, segundo... argumento
+%
+% Por ejemplo:
+%
+% \newcommand{\agua}[1]{H\ensuremath{_#1}O}
+%
+% Cada vez que escribamos "\agua{33}", en el output saldr�: "H33O" (con el 33 como sub�ndice)
+%
+% 
+% %\newcommand{\algo}{algo}
+% 
+% \newcommand{\todolist}[1]{
+%  \marginpar{
+%   \fbox{
+%    \begin{minipage}{3cm}
+%     \tiny{
+%      \begin{list}{$\bullet$}
+%       {
+%       \textsc{\textbf{To do: }}\vspace*{-0.2cm}
+%       \setlength\labelwidth{0.1cm}
+%       \setlength\itemindent{0cm}
+%       \setlength\leftmargin{0.05cm}
+%       \setlength\parsep{0cm}
+%       \setlength\itemsep{0.05cm}
+%       }
+%       #1
+%      \end{list}
+%     }
+%    \end{minipage}
+%   }
+%  }
+% }
+
+%
+% Aqu� puedes instruir a LaTeX de por d�nde cortar las palabras que �l autom�ticamente
+% no sepa. P.e., para cortar "gnomonly" solo por donde se se�ala con guiones (-).
+%
+% \hyphenation{gno-mon-ly} 
+ 
+%
+% Que las primeras p�ginas sean numeradas con n�meros romanos.
+% M�s adelante se cambiar� de nuevo a ar�bicos.
+%
+% \pagenumbering{Roman}

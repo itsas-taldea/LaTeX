@@ -1,0 +1,38 @@
+%
+% Este fichero produce la primera p�gina del PFC/Tesis, con el
+% t�tulo, tu nombre, el nombre del supervisor, etc.
+%
+% La mayor�a, si no todo el contenido de esta p�gina est� incluido a trav�s 
+% de comandos (p.e. \thesistitle) que han sido definidos en Config/pfc_options.tex
+%
+% Editar a voluntad.
+%
+
+\thispagestyle{empty} % no imprimir ni n�mero, ni cabecera ni pi� de p�gina
+
+%
+% Usa \tb para colocar varios items en la p�gina. Uso:
+%
+% \tb{w}{h}{v}{t}
+%
+% donde:
+%
+% w = ancho de la caja con el texto (1.0 = ancho de p�gina)
+% h = posici�n horizontal del centro de la caja de texto (0.0 = izquierda, 1.0 = derecha)
+% v = posici�n vertical del centro de la caja de texto (0.0 = arriba, 1.0 = abajo)
+% t = texto a incluir en la caja de texto
+%
+\tb{0.4}{0.25}{0.1}{\includegraphics[width=0.8\textwidth]{\logoupv}} % logo UPV/EH
+\tb{0.6}{0.7}{0.1}{\includegraphics[width=0.65\textwidth]{\logoibi}} % logo UPV/EHU
+%\includegraphics[width=0.5\textwidth]{Utils/ehu_logo.png}
+\tb{0.8}{0.5}{0.17}{\rule{\columnwidth}{0.025cm}}
+%%\tb{0.8}{0.50}{0.40}{\Large \worktype}                        % si es PFC o Tesis
+\tb{0.5}{0.50}{0.30}{\huge Circuitos de Alta Frecuencia}
+\tb{0.8}{0.50}{0.40}{\large {4º CURSO DE INGENIERÍA DE TELECOMUNICACIÓN}}
+\tb{0.8}{0.50}{0.50}{\large{AÑO ACADÉMICO:	2009/2010}}
+\tb{0.8}{0.50}{0.60}{\huge MASER:}
+\tb{0.8}{0.50}{0.67}{\large{\textbf{Microwave Amplification by Stimulated Emission of Radiation }}}
+\tb{0.8}{0.70}{0.85}{Digna María González Otero\\Iv\'an Iglesias de Lama}
+
+\ \clearpage                       % terminar la p�gina aqu�%
+\thispagestyle{empty} \ \clearpage % p�gina en blanco

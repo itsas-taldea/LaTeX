@@ -1,0 +1,56 @@
+====== Grupo de trabajo: Plantillas para Proyecto de Fin de Carrera ======
+
+  * **Objetivos:**
+    * Diseñar plantillas ofimáticas que sirvan como base en la realización de proyectos de fin de carrera en la UPV/EHU.
+    * Las plantillas pueden ser en formato [[http://es.wikipedia.org/wiki/LaTeX|LaTeX]] y [[http://es.wikipedia.org/wiki/Opendocument|OpenDocument]].
+
+  * **Estado:** Iniciado. 
+
+  * **Plazos:**
+    * De enero 2007 a ?.
+
+  * **Comisión:**
+    * [[poasicri@ehu.es|Iñaki Silanes]]
+
+
+===== Plantillas LaTeX ======
+
+Puedes seguir el avance de las versiones (lista TODO, pedir funcionalidades, notificar bugs, proponer correcciones) en la [[workgroups/plantillas_proyecto_fin_de_carrera/progreso|página de progreso]].
+
+Las plantillas están disponibles como ficheros [[http://es.wikipedia.org/wiki/Tar|TAR]], comprimidos con [[http://es.wikipedia.org/wiki/Gzip|gzip]]. Ambas herramientas son software libre, y deberían ser fácilmente accesibles. En todo caso, estoy abierto a sugerencias para liberar el trabajo empaquetado en otros formatos.
+
+Puedes leer las instrucciones para usarlo en el [[workgroups/plantillas_proyecto_fin_de_carrera/leeme|Léeme]].
+
+
+
+==== PFC ====
+
+  * **Castellano** ([[http://isilanes.org/pub/itsas/itsas_pfc_template.es.tar.gz|Descargar]] | [[http://isilanes.org/pub/itsas/itsas_pfc_template.es.pdf|PDF ejemplo]])
+
+  * **Euskara** ([[http://isilanes.org/pub/itsas/itsas_pfc_template.eu.tar.gz|Jeitsi]] | [[http://isilanes.org/pub/itsas/itsas_pfc_template.eu.pdf|PDF adibidea]])
+
+
+  * **English** ([[http:///isilanes.org/pub/itsas/itsas_pfc_template.en.tar.gz|Download]] | [[http://isilanes.org/pub/itsas/itsas_pfc_template.en.pdf|Sample PDF]])
+
+
+
+
+==== Tesis Doctoral ====
+
+  * **Castellano** ([[http://isilanes.org/pub/itsas/itsas_thesis_template.es.tar.gz|Descargar]] | [[http://isilanes.org/pub/itsas/itsas_thesis_template.es.pdf|PDF ejemplo]])
+
+  * **Euskara** ([[http://isilanes.org/pub/itsas/itsas_thesis_template.eu.tar.gz|Jeitsi]] | [[http://isilanes.org/pub/itsas/itsas_thesis_template.eu.pdf|PDF adibidea]])
+
+
+  * **English** ([[http:///isilanes.org/pub/itsas/itsas_thesis_template.en.tar.gz|Download]] | [[http://isilanes.org/pub/itsas/itsas_thesis_template.en.pdf|Sample PDF]])
+
+===== Documentación =====
+
+  * [[workgroups:plantillas_proyecto_fin_de_carrera/por_que_latex|Razones para usar LaTeX en lugar de procesadores de texto]]
+
+
+===== Enlaces =====
+
+  * [[http://documentation.openoffice.org/Samples_Templates/User/template_2_x/writer/index.html|Plantillas de OpenOffice.org]]
+
+  * [[http://listserv.rediris.es/archives/es-tex.html|Lista de correo de usuarios hispanohablantes de LaTeX]]

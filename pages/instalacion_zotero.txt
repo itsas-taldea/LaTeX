@@ -1,0 +1,12 @@
+====== Instalación de Zotero ======
+
+Zotero es un plugin para Firefox que permite gestionar referencias bibliográficas. 
+
+Para instalarlo, en primer lugar es necesario instalar Mozilla Firefox. Se puede descargar Firefox desde su [[http://www.mozilla-europe.org/es/ | página web oficial]].
+
+A continuación, se instala Zotero desde [[http://www.zotero.org|aquí]]. En caso de dudas con la instalación, se puede consultar la siguiente presentación (páginas 15 a 19).
+
+\\
+\\
+{{slideshare>4zotero-100610175643-phpapp02}}\\
+

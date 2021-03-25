@@ -1,0 +1,221 @@
+\documentclass[11pt]{article}
+
+\input{options}
+\input{acronyms}
+
+\title{Creaci\'on de listas de acr\'onimos con \texttt{glossaries}}
+\author{Digna Gonz\'alez Otero\\Itsas}
+
+\begin{document}
+\maketitle
+\tableofcontents 
+
+ \section{Introducci\'on}
+ 
+ \subsection{Objetivo de documento}
+El objetivo de este documento es explicar muy brevemente c\'omo funciona el
+paquete \texttt{glossaries}, y en concreto c\'omo se puede utilizar para crear
+listas de acr\'onimos. La documentaci\'on de este paquete se encuentra en CTAN,
+y hay una versi\'on larga\footnote{\url{
+http://mirror.ctan.org/macros/latex/contrib/glossaries/glossaries.pdf}}
+y otra abreviada\footnote{\begin{scriptsize}\url{
+http://mirror.ctan.org/macros/latex/contrib/glossaries/glossariesbegin.pdf}     
+                                                                 
+\end{scriptsize}}.
+
+Se recomienda consultar estos manuales para informaci\'on m\'as detallada del
+funcionamiento del paquete y para otros casos de aplicaci\'on.
+
+\subsection{Alternativas}
+
+Existen otras alternativas para crear listas de acr\'onimos, por ejemplo, el
+paquete
+\texttt{acronym}\footnote{\url{
+http://mirror.ctan.org/macros/latex/contrib/acronym/acronym.pdf}}. Este
+paquete es muy f\'acil de utilizar, pero es mucho menos flexible que
+\texttt{glossaries}. Por ejemplo, no permite ordenar el listado de
+acr\'onimos, y dispone de muchas menos opciones de configuraci\'on.
+
+\section{Uso de \texttt{glossaries}}
+
+\subsection{Principios b\'asicos}
+
+Para usar \texttt{glossaries} en primer lugar tenemos que incluir el paquete
+mediante \verb+\usepackage+, y despu\'es hacer que genere los archivos
+intermedios necesarios con el comando \verb+\makeglossaries+. A la hora de
+cargar el paquete podemos especificar algunas opciones de configuraci\'on.
+Por ejemplo, podemos escribir lo siguiente en el
+pre\'ambulo de nuestro documento:
+
+\begin{lstlisting}
+% Cargo el paquete glossaries con diferentes opciones: 
+%  * acronym para crear listas de acr\'onimos
+%  * nonumberlist para que en la lista de acr\'onimos no ponga 
+% en qu\'e p\'aginas aparece  cada t\'ermino
+% * shortcuts para poder utilizar los nombres cortos 
+% para acr\'onimos: \ac, etc
+% * xindy para que utilice xindy como motor de indexado. 
+% * sanitize=none para no tener problemas con los acentos
+
+ \usepackage[acronym,nonumberlist, shortcuts,%
+xindy={language=spanish-traditional},%
+sanitize=none]{glossaries}
+
+\makeglossaries
+\end{lstlisting}
+
+Adem\'as, para que el t\'itulo de la lista de acr\'onimos aparezca en
+castellano, tendremos que usar el siguiente comando:
+
+\begin{lstlisting}
+ \renewcommand{\acronymname}{Lista de Acr\'onimos}%
+\addto\captionsspanish{%
+\renewcommand*{\acronymname}{Lista de Acr\'onimos}%
+}
+\end{lstlisting}
+
+
+Como se muestra en los comentarios del texto, las opciones cargadas son para lo
+siguiente:
+
+\begin{description}
+ \item [acronym] indica que queremos crear listas de acr\'onimos.
+ \item [nonumberlist] para que en la lista no indique junto a cada t\'ermino en
+qu\'e p\'aginas aparece.
+\item [shortcuts] para poder utilizar los comandos cortos para acr\'onimos. Por
+ejemplo, \verb+\ac+, \verb+\acl+, etc.
+\item [xindy] para utilizar \texttt{xindy} como motor de indexado. Para ello
+hay que instalarlo en el equipo. En GNU/Linux, paquete \texttt{xindy}.
+\item [sanitize=none] para evitar problemas con  los acentos al utilizar
+algunos comandos, como \verb+\acs+ o \verb+\acl+.
+\end{description}
+
+\texttt{glossaries} necesita un motor de indexado para generar un \'indice de
+las palabras y t\'erminos y luego poder ordenarlos. Por defecto usa
+\texttt{makeindex}, pero en este ejemplo se ha utilizado \texttt{xindy} porque
+dicen que es m\'as recomendable por su soporte para c\'odigo \LaTeX{} y su mayor
+compatibilidad con otros idiomas (por ejemplo, por las tildes). 
+
+A continuaci\'on, tambi\'en en el pre\'ambulo, hay que crear un listado de los
+acr\'onimos que se quieran utilizar. Se puede crear el listado en un archivo a
+parte e incluirlo con \texttt{input}.
+
+El formato del listado de acr\'onimos es el siguiente:
+\begin{verbatim}
+ \newacronym{etiqueta}{nombrecorto}{nombre largo}
+\end{verbatim}
+
+A continuaci\'on se muestran algunos ejemplos:
+\begin{lstlisting}
+\newacronym{CSE}{CSE}{Calidad en el Suministro El\'ectrico}
+\newacronym{PER}{PER}{Plan de Energ\'ias Renovables}
+\newacronym{REE}{REE}{Red El\'ectrica de Espa\~na}
+\newacronym{PCC}{PCC}{Punto de Conexi\'on Com\'un}
+\newacronym{PFC}{PFC}{proyecto fin de carrera}
+\end{lstlisting}
+
+\subsection{Uso de los acr\'onimos}
+
+A continuaci\'on, en el cuerpo del documento podemos referenciar los
+acr\'onimos. Algunos de los comandos a utilizar son los siguientes:
+
+\begin{description}
+ \item [\textbackslash ac] muestra el acr\'onimo en su forma completa (nombre
+largo + nombre corto entre par\'entesis) la primera vez que aparece el
+acr\'onimo en el documento, y la forma corta el resto de veces.
+ \item [\textbackslash acl] muestra la forma larga del acr\'onimo.
+ \item [\textbackslash acs] muestra la forma corta.
+ \item [\textbackslash acf] muestra la forma completa.
+\end{description}
+
+Por ejemplo, si ponemos \verb+\ac{PFC}+, la primera vez aparecer\'a la forma
+completa, as\'i \ac{PFC}, pero las siguientes la forma corta, as\'i \ac{PFC}.
+
+Adem\'as de estos comandos, hay otros para que la inicial empiece por
+may\'uscula, por ejemplo cuando los usamos al principio de una frase. Son los
+mismos comandos, pero con la inicial en may\'uscula. \verb+\Acl{PFC}+ genera
+este resultado: \Acl{PFC}
+
+\subsection{Listado de acr\'onimos}
+
+Para generar el listado de acr\'onimos es necesario compilar con el sistema de
+indexado. Para ello, basta con ejecutar el siguiente comando en el directorio
+donde est\'a nuestro fichero:
+
+\begin{lstlisting}
+ makeglossaries NombreFichero
+\end{lstlisting}
+
+El orden de compilado es el siguiente:
+\begin{enumerate}
+ \item \texttt{latex} (o \texttt{pdflatex})
+ \item \texttt{makeglossaries}
+ \item \texttt{latex} (o \texttt{pdflatex})
+ \item \texttt{latex} (o \texttt{pdflatex})
+\end{enumerate}
+
+Por \'ultimo, en el lugar del documento donde queramos generar el \'indice de
+acr\'onimos tendremos que escribir \verb+\printglossaries+. Si queremos que
+aparezca en el \'indice de contenidos, tendremos que utilizar el comando
+\verb+\addcontentsline+
+
+\begin{lstlisting}
+\section*{Lista de acr\'onimos}
+\printglossaries
+\addcontentsline{toc}{section}{Lista de Acr\'onimos}
+\end{lstlisting}
+
+
+
+
+\newpage
+\section{Resumen}
+\begin{lstlisting}
+ \documentclass{article}
+ [...] % Aqu\'i se cargar\'ian m\'as paquetes
+ \usepackage[acronym,nonumberlist, shortcuts,%
+ xindy={language=spanish-traditional}, %
+ sanitize=none]{glossaries}
+ 
+ \renewcommand{\acronymname}{Lista de Acr\'onimos}%
+\addto\captionsspanish{%
+\renewcommand*{\acronymname}{Lista de Acr\'onimos}%
+}
+ 
+\makeglossaries
+\input{acronyms}
+\begin{document}
+\section{Introducci\'on}
+
+La \ac{CSE} es muy importante en los sistemas porque...
+
+En este \ac{PFC}...
+
+% Secci\'on de lista de acr\'onimos:
+\printglossaries
+\addcontentsline{toc}{section}{Lista de Acr\'onimos}
+\end{document}
+\end{lstlisting}
+
+Contenido del fichero \texttt{acronyms.tex}:
+
+\begin{lstlisting}[numbers=left]
+\newacronym{CSE}{CSE}{Calidad en el Suministro El\'ectrico}
+\newacronym{PER}{PER}{Plan de Energ\'ias Renovables}
+\newacronym{REE}{REE}{Red El\'ectrica de Espa\~na}
+\newacronym{PCC}{PCC}{Punto de Conexi\'on Com\'un}
+\newacronym{PFC}{PFC}{proyecto fin de carrera}
+\end{lstlisting}
+
+Compilar seg\'un la siguiente secuencia:
+\begin{enumerate}
+ \item \texttt{latex} (o \texttt{pdflatex})
+ \item \texttt{makeglossaries}
+ \item \texttt{latex} (o \texttt{pdflatex})
+ \item \texttt{latex} (o \texttt{pdflatex})
+\end{enumerate}
+
+\newpage
+\printglossaries
+\addcontentsline{toc}{section}{Lista de Acr\'onimos}
+\end{document}

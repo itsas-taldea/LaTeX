@@ -1,0 +1,37 @@
+\section{Introducci\'on}
+
+Este documento constituye la memoria del proyecto desarrollado para la asignatura \href{https://campusvirtual.udc.es/guiadocente/guia_docent/index.php?centre=770&ensenyament=770611&assignatura=770611541&idioma=}{Dom\'otica} impartida en la \href{http://lucas.cdf.udc.es/}{Escuela Universitaria Poli\'ectina de Ferrol}, centro perteneciente a la \href{http://www.udc.es}{Universidade da Coruña}. Dicho proyecto consiste en el desarrollo de un sistema de control para el riego exterior y el alumbrado de una vivienda unifamiliar, de acuerdo con el pliego de condiciones establecido por el profesor titular, Antonio Masdias y Bonome.
+
+El sistema deber\'a estar pensado para su implementaci\'on en un \hyperref[LOGO]{M\'odulo L\'ogico LOGO!} de \hyperref[Siemens]{Siemens}, y se desarrollar\'a con el software \href{http://www.automation.siemens.com/mcms/programmable-logic-controller/en/logic-module-logo/logo-software/Pages/Default.aspx}{LOGO! Soft Comfort} del mismo fabricante.
+
+\subsection{Pliego de condiciones}
+
+La vivienda sobre la que se desarrollar\'a tiene tres plantas: semis\'otano, planta baja y primera planta. Dispone de un terreno ajardinado alrededor de la casa y un h\'orreo en dicho terreno, al cual se deber\'a aplicar una iluminaci\'on nocturna.
+El jard\'in se deber\'a dividir en cuatro sectores de riego:
+
+\begin{center}
+\begin{tabular}[c]{c|c}
+  Denominaci\'on & Tiempo de regado \\
+  \hline
+  Flores 1 & 5 minutos \\
+  Césped 1 & 7 minutos \\
+  Césped 2 & 9 minutos \\
+  Césped 3 & 11 minutos \\
+\end{tabular}
+\end{center}
+
+De forma autom\'atica, se deber\'a encender y apagar el alumbrado del h\'orreo, as\'i como regar, todas las noches a las 23:30 horas. Independientemente, la iluminaci\'on exterior se podr\'a accionar manualmente desde dentro de la vivienda en todo momento.
+
+\subsection{Caracter\'isticas adicionales}
+
+Como caracter\'isticas adicionales definidas por el desarrollador, encontramos las siguientes:
+
+\begin{itemize}
+ \item El usuario necesitar\'a \'unicamente dos pulsadores, o uno doble, para interactuar con el sistema. Uno de ellos afectar\'a al riego y el otro a la iluminaci\'on.
+ \item El usuario tendr\'a la posibilidad de interrumpir el ciclo de regado en caso de que quisiera hacer uso del terreno ajardinado de 23:30 a 23:41.
+ \item Si lo considera necesario, el usuario podr\'a iniciar un ciclo de regado en cualquier momento, si bien los tiempos de duraci\'on ser\'an los especificados en el pliego de condiciones.
+ \item En lugar de iniciar un ciclo completo de regado, el usuario podr\'a activar el sistema de riego y desactivarlo cuando lo considere adecuado.
+ \item Si se ha iniciado un ciclo de regado manualmente, o se ha activado el sistema de riego, antes de las 23:30 y \'este sigue en funcionamiento, se anular\'a el ciclo programado.
+ \item El usuario podra desconectar manualmente la alimentaci\'on tanto de las v\'alvulas de riego como de la iluminaci\'on en caso de emergencia. Esta funcionalidad no se ha implementado por medio del controlador programable, sino de forma el\'ectrica.
+ \item La iluminaci\'on del h\'orreo permanecer\'a activa hasta las 7:30, salvo que el usuario la desactive manualmente.
+\end{itemize}

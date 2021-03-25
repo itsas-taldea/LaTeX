@@ -1,0 +1,43 @@
+\section{Copias de Seguridad}
+\label{backups}
+
+\subsection{Introducción}
+
+Para prevenir posibles pérdidas de datos conviene disponer de un sistema de copias de seguridad. En las siguientes secciones se explica cómo se puede utilizar un disco duro compartido en red en el laboratorio del GSC para realizar de forma automática respaldos de los datos del DokuWiki.
+
+\subsection{Automatización de las copias de seguridad}
+
+Cron es un demonio que sirve para ejecutar tareas programadas según una combinación de la hora, día del mes, día de la semana y semana. Para su funcionamiento, Cron asume que el sistema estará encendido de forma continua. Si el sistema no está activo cuando está programada la ejecución de una tarea, ésta no se ejecutará \cite{cron}.
+
+Si se quiere crear una tarea que se ejecute según una programación distinta a la hora, día, semana o mes, habrá que agregar un archivo que describa la programación en el directorio \texttt{/etc/cron.d}
+
+\begin{listing}[style=consola, numbers=none]
+# nano /etc/cron.d/backup
+\end{listing}
+
+El fichero debe tener el siguiente formato:
+
+minuto   hora   día   mes   día\_de\_la\_semana usuario  comando
+
+\begin{itemize}
+    \item minuto — número entero entre 0 y 59
+    \item hora — número entero entre 0 y 23
+    \item día — número entero entre 1 y 31 (debe ser un día válido si se especifica un mes)
+    \item mes — número entero entre 1 y 12 (o nombre corto del mes, por ejemplo, ene, feb, etc.)
+    \item día\_de\_la\_semana — número entero entre 0 y 7 (donde 0 o 7 corresponde a Domingo), o el nombre corto del día de la semana, por ejemplo, dom, lun, etc.
+    \item usuario — usuario que ejecutará el script
+    \item comando — el comando a ejecutar
+\end{itemize}
+
+Para que el respaldo básico se ejecute de lunes a viernes y el total los sábados, el fichero \texttt{/etc/cron.d/backup} debe tener la siguiente forma:
+
+\begin{listing}
+# Backups basicos dokuwiki
+00  22 * * 1,2,3,4,5    root        /usr/bin/backup.sh
+#El backup basico se ejecuta a las 22:00 de lunes a viernes
+# Backup total del Dokuwiki
+00 22  * * 6         root /usr/bin/totalbackup.sh
+#El backup total se ejecuta a las 22:00 de los sabados
+\end{listing}
+
+\newpage

@@ -1,0 +1,27 @@
+% Karrera Amarierako Proiektua egiteko LaTeX txantiloia
+% itsas.ehu.es/workgroups/latex
+% Unai Martinez Corral
+% umartinez012@ikasle.ehu.es
+%
+% <- config.tex
+
+\addto\captionsbasque{\renewcommand{\chaptername}{Dokumentua}}
+
+\makeatletter 
+\renewcommand{\fnum@figure}{\thefigure~\figurename}
+\renewcommand{\fnum@table}{\thetable~\tablename}
+
+\newcommand{\ordref}{
+\renewcommand*\thesection{\arabic{section}.}
+\renewcommand*\thesubsection{\arabic{section}.\arabic{subsection}.}
+\renewcommand*\thesubsubsection{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}.}
+\renewcommand\thetable{\arabic{chapter}.\arabic{table}.}
+\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}
+}
+\makeatother
+
+\newcommand\gaur{{\number\year}ko\space\ifcase\month\or
+ urtarrila\or otsaila\or martxoa\or apirila\or maiatza\or ekaina\or uztaila\or
+ abuztua\or iraila\or urria\or azaroa\or abendua\fi ren~\number\day a}
